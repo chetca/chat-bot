@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>I Learn Vue.js</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron mt-3">
+            <div class="form-signin">
+                <!-- Вьюха приложения -->
+                <div id="todo-list-example">
+                    <fieldset class="form-group">
+                        <div class="todo-input">
+                            <label for="name">Заметка</label>
+                            <input type="text" placeholder="Название" class="form-control" id="name" v-model="newTodoTitle" required>
+                            <label for="note">Примечание</label>
+                            <input type="text" placeholder="Примечание" class="form-control" id="note" v-model="newTodoNote" v-on:keyup.enter="addNewTodo"
+                                required>
+                        </div>
+                        <div class="todo-btn">
+                            <button class="btn btn-success btn-block" v-on:click="addNewTodo">
+                                <label>Добавить</label>
+                            </button>
+                        </div>
+                    </fieldset>
+                    <div class="todo-items">
+                        <div is="todo-item" v-for="(todo, index) in todos" v-bind:index="todo.id" v-bind:title="todo.title" v-bind:note="todo.note"
+                            v-bind:isedit="todo.isedit" v-on:remove="todos.splice(index, 1)" v-on:show="show" v-on:hide="hide">
+                            <!-- Место, куда вставятся все -->
+                        </div>
+                        <!-- https://ru.vuejs.org/v2/guide/list.html#%D0%97%D0%B0%D0%BC%D0%B5%D0%BD%D1%8B-%D0%B2-%D0%BC%D0%B0%D1%81%D1%81%D0%B8%D0%B2%D0%B5 
+                        https://tehnojam.pro/category/development/sozdanie-spiska-zadach-s-vue_js.html
+                        https://ru.vuejs.org/v2/guide/computed.html -->
+                    </div>
+                </div>
+                <!-- Конец вьюхи -->
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">ИМИ БГУ</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Главная </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Ссылки</a>
+                </li>
+                <li class="nav-item dropup">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Другие лабы</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown10">
+                        <a class="dropdown-item" href="#">Лаба 1</a>
+                        <a class="dropdown-item" href="#">Лаба 2</a>
+                        <a class="dropdown-item" href="#">Лаба 3</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        Vue.component('todo-item', {
+            props: ['index', 'title', 'note', 'isedit'],
+            methods: {
+                showForm: function (index) {
+                    //alert('Во внутреннюю функцию зашёл, индекс: ' + index);
+                    this.$emit('show', index);
+                },
+                hideForm: function (index, title, note) {
+                    this.$emit('hide', index, title, note);
+                }
+            },
+            template: ' \
+            <div class="todo-item-elem">\
+                <div class="content" v-show="!isedit">\
+                    <h4 class="zero-margin">{{ title }}</h4>\
+                    <small class="text-muted">{{ note }}</small>\
+                    <div class="text-right">\
+                        <i class="fa fa-pencil-square-o cur_btn" aria-hidden="true" v-on:click="showForm(index)"></i>\
+                        <i class="fa fa-trash cur_btn" aria-hidden="true" v-on:click="$emit(\'remove\')"></i>\
+                    </div>\
+                </div>\
+                <div class="content" v-show="isedit">\
+                    <div class="ui form">\
+                        <div class="field">\
+                            <label>Заметка</label>\
+                            <input class="form-control" type="text" v-model="title">\
+                            <label>Примечание</label>\
+                            <input class="form-control" type="text" v-model="note">\
+                        </div>\
+                        <div class="todo-btn">\
+                            <button class="btn btn-danger btn-block" v-on:click="hideForm(index, title, note)"> \
+                                <label>Закрыть</label> \
+                            </button>\
+                        </div>\
+                    </div>\
+                </div>\
+            </div>',
+        })
+        new Vue({
+            el: '#todo-list-example',
+            data: {
+                newTodoTitle: '',
+                newTodoNote: '',
+                todos: [{
+                    id: 0,
+                    title: 'Todo B',
+                    note: 'Project B',
+                    isedit: false
+                }],
+                nextTodoId: 1
+            },
+            methods: {
+                addNewTodo: function () {
+                    if (this.newTodoTitle != '' && this.newTodoNote != '') {
+                        this.todos.push({
+                            id: this.nextTodoId++,
+                            title: this.newTodoTitle,
+                            note: this.newTodoNote,
+                            isedit: false
+                        })
+                        this.newTodoTitle = '';
+                        this.newTodoNote = '';
+                        //alert(this.todos[this.nextTodoId-1].isedit);
+                    } else {
+                        alert('Пожалуйста, заполните поля');
+                    }
+                },
+                show: function (index) {
+                    //this.todos[index].isedit = true;
+                    for (let key in this.todos) {
+                        //console.log(this.todos[key]);
+                        if (this.todos[key].id == index) {
+                            this.todos[key].isedit = true;
+                        }
+                    }
+                },
+                hide: function (index, title, note) {
+                    for (let key in this.todos) {
+                        //console.log(this.todos[key]);
+                        if (this.todos[key].id == index) {
+                            this.todos[key].isedit = false;
+                            this.todos[key].title = title;
+                            this.todos[key].note = note;
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

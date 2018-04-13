@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <script src="https://biletavto.ru/assets/bilet/js/jquery.js"></script>
+    <base href="https://biletavto.ru/" />
+    <title>Билеты на автобус, купить билет на автобус, заказать бронь билета онлайн, цена</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="Купить билеты на автобус онлайн. Проверить наличие и заказать автобусные билеты на автовокзалах России, стоимость и бронь на сайте biletavto.ru" name="description" />
+
+    <meta property="og:site_name" content="biletavto.ru" />
+    <meta property="og:title" content="Билеты на автобус, купить билет на автобус, заказать бронь билета онлайн, цена | БилетАвто" />
+
+    <meta property="og:image" content="https://biletavto.ru/assets/bilet/images/site-cover.jpg" />
+    <meta property="og:url" content="https://biletavto.ru/" />
+    <meta property="og:description" content="Купить билеты на автобус онлайн. Проверить наличие и заказать автобусные билеты на автовокзалах России, стоимость и бронь на сайте biletavto.ru" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <link rel="canonical" href="https://biletavto.ru/" />
+    <link rel="stylesheet" href="/assets/bilet/css/all.min.css?7" />
+    <link rel="stylesheet" href="/assets/bilet/css/jquery.fancybox.css" />
+    <link rel="stylesheet" media="screen and (max-width: 1079px)" href="/assets/bilet/css/tablet.min.css?4" />
+    <link rel="stylesheet" media="screen and (max-width: 709px)" href="/assets/bilet/css/mobile.min.css?3" />
+    <link rel="stylesheet" href="/assets/bilet/css/jquery-plugins.min.css?3" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link href="/assets/bilet/kladr/jquery.kladr.min.css" rel="stylesheet">
+    <script src="/assets/bilet/kladr/jquery.kladr.min.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" type="text/css" href="/assets/bilet/css/style_add.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/bilet/datetime/jquery.datetimepicker.css" />
+
+    <script type="text/javascript" src="//vk.com/js/api/openapi.js?121"></script>
+    <link rel="stylesheet" type="text/css" href="/assets/bilet/modal/css/component.css" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="/assets/components/shopkeeper/css/web/default/style.css" type="text/css" />
+    <script type="text/javascript" src="/assets/components/shopkeeper/js/web/lang/ru.js?v=2.3.8"></script>
+    <script type="text/javascript" src="/assets/components/shopkeeper/js/web/shopkeeper.js?v=2.3.8"></script>
+
+    <style>
+        .popup_ba {
+            width: 250px;
+            margin-bottom: 10px;
+            margin-left: 3px;
+            z-index: 4;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+        .popup_header {
+            padding-bottom: 20px;
+        }
+
+        .popup_content {
+            background-color: #fff;
+            padding-bottom: 20px;
+            padding-top: 20px;
+            border: 1px solid;
+            border-color: #122f5b;
+            border-radius: 10px;
+        }
+
+        .btn_ex {
+            position: absolute;
+            right: 0;
+            cursor: pointer;
+            margin: 0;
+            padding-right: 5px;
+        }
+
+        .popup_input {
+            padding: 5px !important;
+            border-width: 2px !important;
+            border-style: solid !important;
+            border-color: #bdbaba !important;
+            width: 90% !important;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 16px !important;
+            font-weight: normal !important;
+            color: #666 !important;
+        }
+
+        .popup_btn {
+            text-decoration: none;
+            text-align: center;
+            border-collapse: inherit;
+            border-image: none;
+            color: #000000 !important;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 16px !important;
+            font-weight: normal !important;
+            background-color: #efb810 !important;
+            width: 70% !important;
+            height: 45px !important;
+            cursor: pointer;
+            border-width: 0px;
+            border-style: solid;
+            padding: 5px;
+        }
+
+        .chat-bar {
+            position: fixed;
+            right: 20px;
+            bottom: calc(50% - 150px);
+            width: 55px;
+            height: 300px;
+            background-color: #132f5b;
+            border-radius: 3px;
+            z-index: 10000;
+            animation: ocAnimation-barShow .5s ease;
+            box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2), 0 15px 35px 0 rgba(100, 100, 100, 0.3);
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -ms-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .bar-outerPanel-text {
+            transform: rotate(-90deg);
+            height: 190px;
+            width: 180px;
+            line-height: 52px;
+            text-align: center;
+            color: white;
+            position: absolute;
+            left: 5px;
+            top: 55px;
+            letter-spacing: .8px;
+            font-size: 22px;
+            font-weight: 100 !important;
+        }
+
+        .bar-outerPanel-ico {
+            height: 60px;
+            width: 55px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            font-size: 22px;
+        }
+
+        .bar-innerPanel {
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            opacity: 0;
+            position: absolute;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            z-index: 2;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            transition: opacity .1s ease-in-out;
+        }
+
+        .bar-innerPanel-webChat {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            position: relative;
+            transition: background-color .2s ease-in-out;
+        }
+
+        .bar-innerPanel-webChat:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .bar-innerPanel-webChat:hover+* {
+            display: block;
+        }
+
+        .bar-innerPanel-webChat-tooltip {
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -ms-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: none;
+            color: white;
+            position: absolute;
+            background: rgba(0, 0, 0, 0.6);
+            text-align: center;
+            padding: 10px;
+            right: calc(100% + 10px);
+            top: calc(33.333% - 25%);
+            border-radius: 5px;
+            width: 110px;
+        }
+
+        .bar-innerPanel-webChat-tooltip:before {
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -ms-backface-visibility: hidden;
+            backface-visibility: hidden;
+            content: '';
+            width: 0;
+            height: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-left: 8px solid rgba(0, 0, 0, 0.6);
+            position: absolute;
+            left: 100%;
+            top: 33%;
+        }
+
+        .bar-innerPanel-webChat-tooltip:hover {
+            display: block;
+        }
+
+        .bar-innerPanel-webChat-tooltip {
+            top: calc(15% - 24px);
+        }
+
+        .ocWidget-text {
+            font-size: 1.5em;
+            font-weight: 100;
+            color: #2B2B2B;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        var site_base_url = '/';
+        var shkOpt = jQuery.extend(shkOptDefault, {
+            prodCont: 'div.shk-item',
+            orderFormPage: '11',
+            orderFormPageUrl: '/order/',
+            changePrice: true,
+            flyToCart: 'nofly',
+            goToOrderFormPage: true,
+            psn: 'qbNdTWHb47eexdOG8cRrqw=='
+        });
+        SHK.data = {
+            price_total: 0,
+            items_total: 0,
+            items_unique_total: 0,
+            ids: []
+        };
+        jQuery(document).bind('ready', function() {
+            jQuery(shkOpt.prodCont).shopkeeper();
+        });
+
+    </script>
+</head>
+
+<body>
+    <div id="main-menu">
+        <div class="center">
+            <a id="logo-small" href="/"></a>
+            <ul>
+                <li><a href="https://biletavto.ru/">Главная</a></li>
+                <li><a href="https://biletavto.ru/schedule/">Расписание</a></li>
+                <li><a href="https://biletavto.ru/faq/">Вопросы и ответы</a></li>
+                <li><a href="https://biletavto.ru/telefony-avtovokzalov/">Телефоны автовокзалов</a></li>
+                <li> <a href="https://biletavto.ru/#popular" data-scroll="#popular" data-filter="webinars">Популярные маршруты</a> </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="mobile-menu" style="display: none">
+        <div class="links">
+            <a href="https://biletavto.ru/"><span><img src="/assets/bilet/images/menu/main.png" alt="" /></span>Главная</a>
+            <a href="https://biletavto.ru/schedule/"><span><img src="/assets/bilet/images/menu/iis.png" alt="" /></span>Расписание</a>
+            <a href="https://biletavto.ru/faq/"><span><img src="/assets/bilet/images/menu/iis.png" alt="" /></span>Вопросы и ответы</a>
+            <a href="https://biletavto.ru/orders/">Мои заказы</a>
+            <a href="https://biletavto.ru/?service=logout" title="Выход">Выход</a>
+
+        </div>
+    </div>
+    <div class="popup_ba" hidden="hidden">
+        <div class="popup_header">
+            <p class="btn_ex" id="switch">&times;</p>
+        </div>
+        <div class="popup_content">
+            <form role="form" id="formMain" name="formMain" method="post">
+                <p id="messegeResult" style="text-align: center">Хотите первыми получать информацию о скидках до 90%?<br> Подпишитесь на рассылку</p>
+                <div style="text-align: center">
+                    <input class="popup_input" placeholder="Ваш e-mail" maxlength="255" type="email" name="email_subscr" id="email_subscr" required><br><br>
+                    <button class="popup_btn" type="submit" name="submit_subscr" id="submit_subscr">
+                        Подписаться<sup><small>&lowast;</small></sup>
+                    </button><br>
+                    <span style="text-align: center; font-size: 10px">
+                        <small>&lowast;</small> Нажимая на кнопку "Подписаться" Вы автоматически соглашаетесь с 
+                        <a href="/policy">политикой конфиденциальности</a>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!--  Чат-бот  -->
+    <div class="chat-bar">
+        <!-- ИНТЕРФЕЙС ПАНЕЛИ -->
+        <div class="bar-wrapper" style="display:block">
+            <div class="bar-outerPanel">
+                <div class="bar-outerPanel-text">напишите нам</div>
+                <div class="bar-outerPanel-ico">
+                    <i class="fa fa-comment" style="transform: scale(1); opacity: 1;"></i>
+                </div>
+            </div>
+            <div class="bar-innerPanel">
+                <div class="bar-innerPanel-webChat" data-onclick="ocWidget.chat.init()"></div>
+                <div class="bar-innerPanel-webChat-tooltip ocWidget-text">Написать в чат на сайте</div>
+            </div>
+        </div>
+    </div>
+    <!-- Конец чат-бота   -->
+
+    <div style="width: 100px; height: 100px; position: fixed;
+z-index: 2147483648;
+-webkit-backface-visibility: hidden;
+backface-visibility: hidden;
+opacity: 0;
+-webkit-animation-duration: .2s;
+animation-duration: .2s;
+box-shadow: 0 12px 14px 8px rgba(0,0,0,.17);
+-webkit-filter: blur(0);
+filter: blur(0); bottom: -200px;
+right: 30px;
+border-top-left-radius: 3px !important;
+border-top-right-radius: 33px !important;
+transition: opacity .2s ease-in .15s,background-color .2s ease-in,bottom .2s ease-in;
+opacity: 0; background-color: rgb(56, 61, 69);">
+        Gsdfsdafasdf
+
+    </div>
+    <header>
+        <div class="center">
+            <a id="logo" href="/"></a>
+
+            <div class="phone">
+                <a href="tel:88002004401" class="cpc-tel">8 (800) 200-44-01</a>
+            </div>
+
+            <ul id="top-menu">
+                <div class="loginMessage"></div>
+
+                <li>
+                    <a href="https://biletavto.ru/orders/" class="cabinet">Личный кабинет: elevator</a>
+                </li>
+
+                <li>
+                    <a href="https://biletavto.ru/biletavtoarmk/awpc/ticket/report-admin/">Отчеты</a>
+                </li>
+
+                <li>
+                    <a href="/?service=logout" title="Выход">Выход</a>
+                </li>
+            </ul>
+            <ul></ul>
+        </div>
+
+        <div class="mobile invisible">
+            <a href="tel:88002004401" class="phone-header-icon cpc-tel">8 (800) 200-44-01</a>
+        </div>
+        <a id="menu-link" class="mobile toggle-link" data-toggle="#mobile-menu" href="javascript:;"></a>
+    </header>
+
+
+    <section class="slide slide-banner page-cover nomobile" style="background-image: url(/assets/bilet/images/main/bg-6.jpg)">
+        <div class="content-wrapper center">
+
+            <div class="content">
+                <h1 class="cover-title" style="font-size: 33px;">Билеты на автобус</h1>
+                <div class="btn-group subscribe-form">
+                    <!--<form class="form-horizontal" method="GET" action="https://biletavto.ru/schedule/" onkeypress="if(event.keyCode == 13) return false;">-->
+
+                    <input type="text" id="search_from_name" name="city_start" required placeholder="Откуда">
+                    <input type="text" id="search_to_name" name="city_end" required placeholder="Куда">
+                    <input type="text" placeholder="Дата" id="datetimepicker" name="date" value="">
+                    <button type="submit" id="submit" class="btn btn-primary schedule-anchor-btn">Искать</button>
+                    <!--</form>-->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide slide-banner mobile" style="background-image: url(/assets/bilet/images/main/bg-6.jpg)">
+        <div class="content-wrapper center">
+            <div class="content">
+                <h3>Поиск билетов</h3>
+                <h5>Билеты на автобус по России</h5>
+                <div class="btn-group subscribe-form">
+                    <!--<form class="form-horizontal" method="GET" action="https://biletavto.ru/schedule/" onkeypress="if(event.keyCode == 13) return false;">-->
+                    <input type="text" id="search_from_name1" name="city_start" required placeholder="Откуда">
+                    <input type="text" id="search_to_name1" name="city_end" required placeholder="Куда">
+                    <input type="text" placeholder="Дата" id="datetimepicker1" name="date" value="">
+                    <button type="submit" id="submit1" class="btn btn-primary schedule-anchor-btn">Искать</button>
+                    <!--</form>	-->
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/assets/bilet/template/js_v2/url_translit.js"></script>
+    <script>
+        function AjaxFormRequest(result_id, formMain, url) {
+            jQuery.ajax({
+                url: url,
+                type: "POST",
+                dataType: "html",
+                data: jQuery("#" + formMain).serialize(),
+                success: function(response) {
+                    document.getElementById(result_id).innerHTML = "Спасибо за подписку!";
+                    $(".popup_ba").hide(2000);
+                },
+                error: function(response) {
+                    document.getElementById(result_id).innerHTML = "Введите корректный E-mail";
+                }
+            });
+
+            $(':input', '#formMain')
+                .not(':button, :submit, :reset, :hidden')
+                .val('')
+                .removeAttr('checked')
+                .removeAttr('selected');
+        }
+
+        submit_subscr.onclick = function() {
+            if ($('email_subscr').val() != "") {
+                AjaxFormRequest('messegeResult', 'formMain', 'subscr.php');
+            }
+        }
+
+        jQuery(document).ready(function() {
+            $('.cabinet').text(function(index, text) {
+                if (text.length > 33) {
+                    text = text.substr(0, 32) + "..."; //17+16 - длина логина
+                }
+                return text;
+            });
+        });
+
+        jQuery(document).ready(function() {
+            jQuery('.popup_ba').delay(10).show(1000);
+        });
+
+        $("#switch").on("click", function() {
+            $(".popup_ba").hide(1000);
+        });
+
+    </script>
+
+    <script>
+        $(function() {
+            $('#search_from_name').kladr({
+                token: '563243450a69dea86e8b458d',
+                type: $.kladr.type.city
+            });
+
+            $('#search_to_name').kladr({
+                token: '563243450a69dea86e8b458d',
+                type: $.kladr.type.city
+            });
+            $('#search_from_name1').kladr({
+                token: '563243450a69dea86e8b458d',
+                type: $.kladr.type.city
+            });
+
+            $('#search_to_name1').kladr({
+                token: '563243450a69dea86e8b458d',
+                type: $.kladr.type.city
+            });
+        });
+
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#datetimepicker').datetimepicker({
+
+                lang: 'ru',
+                dayOfWeekStart: 1,
+                timepicker: false,
+                format: 'd.m.Y',
+                scrollMonth: false,
+                scrollTime: false,
+                scrollInput: false,
+                minDate: 0,
+            });
+
+            $('#datetimepicker1').datetimepicker({
+
+                lang: 'ru',
+                dayOfWeekStart: 1,
+                timepicker: false,
+                format: 'd.m.Y',
+                scrollMonth: false,
+                scrollTime: false,
+                scrollInput: false,
+                minDate: 0,
+            });
+
+            /*var dt = new Date();
+            var month = ("0" + (dt.getMonth() + 1)).slice(-2) ;
+            var next_day = dt.getDate()+1;
+            var day = ("0" + next_day).slice(-2);
+        
+        
+        
+            var year = dt.getFullYear();
+            var today = day + '.' + month + '.' + year;
+            */
+
+            var today1 = new Date();
+            var tomorrow = new Date(today1.getTime() + (24 * 60 * 60 * 1000));
+            var dayTomorrow = tomorrow.getDate();
+            if (dayTomorrow < 10) dayTomorrow = '0' + dayTomorrow;
+
+            var monthTomorrow = tomorrow.getMonth() + 1; //в js месяц отсчитывается с нуля
+            if (monthTomorrow < 10) monthTomorrow = '0' + monthTomorrow;
+
+            var yearTomorrow = tomorrow.getFullYear();
+
+            var today2 = dayTomorrow + '.' + monthTomorrow + '.' + yearTomorrow;
+
+
+
+            console.log(today2);
+
+
+
+            $("#datetimepicker").val(today2);
+            $("#datetimepicker1").val(today2);
+        });
+
+    </script>
+
+    <!--
+    <a class="main-section-link rubber investment nomobile" href="https://biletavto.ru/raspisanie/" target="_blank">
+	    <small>Быстрый и удобный поиск билетов</small>
+	    Свыше <i>70</i> направлений по Республике Бурятии<span></span>
+    </a>
+-->
+
+    <div class="clear"></div>
+
+    <section>
+        <marquee direction="left" style="font-size: 20px;">
+
+        </marquee>
+    </section>
+
+    <section class="slide center">
+        <p style="text-align:center; font-size:26px; ">Новости и акции
+            <a href="https://biletavto.ru/news/" class="fl-r link nomobile" style="">Все новости и акции</a>
+        </p>
+
+
+
+        <div class="video-list nomobile">
+            <div class="list">
+
+                <div class="item toggle-link-group active" data-target="#news-38091" data-group="video">
+                    <span class="poster"><img src="assets/bilet/images/news/279/2018-01-23_8-17-58_1.jpg" alt="" width="127"></span>
+                    <div class="info">
+                        <span class="date">23 Январь 2018</span> Термальные источники в Бурятии: комфорт и оздоровление круглый год
+                    </div>
+                </div>
+                <div class="item toggle-link-group " data-target="#news-38090" data-group="video">
+                    <span class="poster"><img src="assets/bilet/images/news/279/2018-01-15_11-51-53_1.jpg" alt="" width="127"></span>
+                    <div class="info">
+                        <span class="date">15 Январь 2018</span> Легальные и нелегальные перевозчики: польза высокой конкуренции
+                    </div>
+                </div>
+                <div class="item toggle-link-group " data-target="#news-38089" data-group="video">
+                    <span class="poster"><img src="assets/bilet/images/news/279/2018-01-09_11-21-47_1.jpg" alt="" width="127"></span>
+                    <div class="info">
+                        <span class="date"> 9 Январь 2018</span> Представляем единую базу автовокзалов в Республике Бурятия
+                    </div>
+                </div>
+                <div class="item toggle-link-group " data-target="#news-38085" data-group="video">
+                    <span class="poster"><img src="assets/bilet/images/news/279/2017-12-26_4-52-31_1.jpg" alt="" width="127"></span>
+                    <div class="info">
+                        <span class="date">26 Декабрь 2017</span> Путешествие по Новому году: лучшее решение на праздники
+                    </div>
+                </div>
+                <div class="item toggle-link-group " data-target="#news-38083" data-group="video">
+                    <span class="poster"><img src="assets/bilet/images/news/279/2017-12-19_6-20-17_1.jpg" alt="" width="127"></span>
+                    <div class="info">
+                        <span class="date">19 Декабрь 2017</span> Горнолыжные курорты России
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="video" id="news-38091" style="display: block;">
+                <img src="assets/bilet/images/news/279/2018-01-23_8-17-58_1.jpg" alt="Термальные источники в Бурятии: комфорт и оздоровление круглый год" style="width: 100%">
+
+                <span class="date">23 Январь 2018</span>
+                <p class="desc">
+                    Термальные источники в Бурятии: комфорт и оздоровление круглый год
+                    <br><a href="https://biletavto.ru/news/termalnyie-istochniki-v-buryatii-komfort-i-ozdorovlenie-kruglyij-god/" style="color:white; font-weight:900">Подробнее...</a>
+                </p>
+            </div>
+            <div class="video" id="news-38090" style="display: none;">
+                <img src="assets/bilet/images/news/279/2018-01-15_11-51-53_1.jpg" alt="Легальные и нелегальные перевозчики: польза высокой конкуренции" style="width: 100%">
+
+                <span class="date">15 Январь 2018</span>
+                <p class="desc">
+                    Легальные и нелегальные перевозчики: польза высокой конкуренции
+                    <br><a href="https://biletavto.ru/news/legalnyie-i-nelegalnyie-perevozchiki-polza-vyisokoj-konkurenczii/" style="color:white; font-weight:900">Подробнее...</a>
+                </p>
+            </div>
+            <div class="video" id="news-38089" style="display: none;">
+                <img src="assets/bilet/images/news/279/2018-01-09_11-21-47_1.jpg" alt="Представляем единую базу автовокзалов в Республике Бурятия" style="width: 100%">
+
+                <span class="date"> 9 Январь 2018</span>
+                <p class="desc">
+                    Представляем единую базу автовокзалов в Республике Бурятия
+                    <br><a href="https://biletavto.ru/news/predstavlyaem-edinuyu-bazu-avtovokzalov-v-respublike-buryatiya/" style="color:white; font-weight:900">Подробнее...</a>
+                </p>
+            </div>
+            <div class="video" id="news-38085" style="display: none;">
+                <img src="assets/bilet/images/news/279/2017-12-26_4-52-31_1.jpg" alt="Путешествие по Новому году: лучшее решение на праздники" style="width: 100%">
+
+                <span class="date">26 Декабрь 2017</span>
+                <p class="desc">
+                    Путешествие по Новому году: лучшее решение на праздники
+                    <br><a href="https://biletavto.ru/news/puteshestvie-po-novomu-godu-luchshee-reshenie-na-prazdniki/" style="color:white; font-weight:900">Подробнее...</a>
+                </p>
+            </div>
+            <div class="video" id="news-38083" style="display: none;">
+                <img src="assets/bilet/images/news/279/2017-12-19_6-20-17_1.jpg" alt="Горнолыжные курорты России" style="width: 100%">
+
+                <span class="date">19 Декабрь 2017</span>
+                <p class="desc">
+                    Горнолыжные курорты России
+                    <br><a href="https://biletavto.ru/news/gornolyizhnyie-kurortyi-rossii/" style="color:white; font-weight:900">Подробнее...</a>
+                </p>
+            </div>
+
+
+        </div>
+
+        <div class="video-list mobile" style="min-height: 160px">
+
+            <div class="video" id="video-38091-mobile">
+                <img src="assets/bilet/images/news/279/2018-01-23_8-17-58_1.jpg" alt="" style="width: 100%">
+
+                <span class="date">23 Январь 2018</span>
+                <p class="desc">
+                    Термальные источники в Бурятии: комфорт и оздоровление круглый год
+                    <br><a href="https://biletavto.ru/news/termalnyie-istochniki-v-buryatii-komfort-i-ozdorovlenie-kruglyij-god/" target="_blank" style="color:white; font-weight:900">Подробнее...</a>
+                </p>
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+
+
+    <div class="clear"></div>
+
+    <section class="slide slide-gray" id="popular">
+        <div class="center">
+            <!--<h2 class="invest-offers">Популярные маршруты</h2>
+		<p>9 самых популярных маршрутов</p>-->
+            <p style="text-align:center; font-size: 26px; ">Популярные маршруты</p>
+            <p style="text-align:center; font-size: 14px; ">9 самых популярных маршрутов</p>
+            <section class="offers-row clearer invest-offers">
+                <div class="offer offer-banner" style="background-image: url(/assets/bilet/images/pop/aginskoe.jpg);">
+                    <div class="shadow"></div>
+                    <div class="content">
+
+                        <h4>&nbsp;</h4>
+                        <p class="strategy" style="font-size: 22px;">Агинское - Чита</p>
+                        <span class="sep"></span>
+                        <p class="pers"><span>800</span> руб.</p>
+                        <!-- <img src="/content/images/tmp/invest/pic-1.png" alt=""> -->
+                        <br>
+                        <p>Агинское-Чита: Сегодня Агинское — современный благоустроенный посёлок, административный центр Агинского Бурятского округа...</p>
+                    </div>
+                    <div class="content_hover">
+                        <h4>Агинское<br>Чита</h4>
+                        <span class="sep"></span>
+                        <p><span>Цена билета: 800 рублей</span></p>
+                        <br>
+                        <p> В последние годы появилось много красивых административных зданий, Дом спорта, Интернет-центр, гостиницы и рестораны. Преобразился не только центр, но и окраины.</p>
+
+                    </div>
+                    <span class="bottom">
+    					<a class="btn btn-primary-brdr btn-medium" href="https://biletavto.ru/schedule/aginskoe/chita/">Купить</a>
+    				</span>
+                </div>
+
+                <div class="offer offer-banner" style="background-image: url(/assets/bilet/images/pop/moskva.jpg);">
+                    <div class="shadow"></div>
+                    <div class="content">
+
+                        <h4>&nbsp;</h4>
+                        <p class="strategy" style="font-size: 22px;">Москва - Санкт-Петербург</p>
+                        <span class="sep"></span>
+                        <p class="pers"><span>900</span> руб.</p>
+                        <!-- <img src="/content/images/tmp/invest/pic-1.png" alt=""> -->
+                        <br>
+                        <p>Этот старейший город страны, основанный Юрием Долгоруким в далеком 1147 году, подобно Фениксу, неоднократно сжигали, но каждый раз восстанавливали и возрождали, увеличивая размеры и красоту Москвы.</p>
+                    </div>
+                    <div class="content_hover">
+                        <h4>Москва<br>Санкт-Петербург</h4>
+                        <span class="sep"></span>
+                        <p><span>Цена билета: 900 рублей</span></p>
+                        <br>
+                        <p>Символом столицы являются Кремль и Красная площадь, не менее знамениты и Триумфальная арка, Третьяковская галерея, Храм Христа Спасителя, Храм Иконы Казанской Божьей матери, Пушкинский музей, Оружейная палата, Большой и Малый театры, Гостиный двор, Арбат, Воробьевы горы и Царицыно – это далеко неполный список культурного наследия Москвы.</p>
+
+                    </div>
+                    <span class="bottom">
+    					<a class="btn btn-primary-brdr btn-medium" href="https://biletavto.ru/schedule/moskva/sankt_peterburg/">Купить</a>
+    				</span>
+                </div>
+
+                <div class="offer offer-banner" style="background-image: url(/assets/bilet/images/pop/riga.jpg);">
+                    <div class="shadow"></div>
+                    <div class="content">
+
+                        <h4>&nbsp;</h4>
+                        <p class="strategy" style="font-size: 22px;">Рига - Варшава</p>
+                        <span class="sep"></span>
+                        <p class="pers"><span>2500</span> руб.</p>
+                        <!-- <img src="/content/images/tmp/invest/pic-1.png" alt=""> -->
+                        <br>
+                        <p>Рига — столица Латвии и самый крупный город стран Балтии, а также третий по количеству жителей в регионе Балтийского моря.</p>
+                    </div>
+                    <div class="content_hover">
+                        <h4>Рига<br>Варшава</h4>
+                        <span class="sep"></span>
+                        <p><span>Цена билета: 2500 рублей</span></p>
+                        <br>
+                        <p>Город был основан в 1201 году. Население — 700,6 тысяч жителей. Из них латыши — 42%, русские — 41 %.</p>
+
+                    </div>
+                    <span class="bottom">
+    					<a class="btn btn-primary-brdr btn-medium" href="https://biletavto.ru/schedule/riga/varshava/">Купить</a>
+    				</span>
+                </div>
+
+
+
+
+            </section>
+
+            <section class="offers-row clearer invest-offers">
+
+
+                <div class="offer offer-banner" style="background-image: url(/assets/bilet/images/pop/chita.jpg);">
+                    <div class="shadow"></div>
+                    <div class="content">
+
+                        <h4>&nbsp;</h4>
+                        <p class="strategy" style="font-size: 22px;">Чита - Борзя</p>
+                        <span class="sep"></span>
+                        <p class="pers"><span>760</span> руб.</p>
+                        <br>
+                        <p>Город назван Читой потому, что расположен на берегу реки Читы. Но до сих пор продолжаются споры по поводу того, что означает слово чита. В разное время и в разных источниках город назывался по-разному.</p>
+                    </div>
+                    <div class="content_hover">
+                        <h4>Чита<br>Борзя</h4>
+                        <span class="sep"></span>
+                        <p><span>Цена билета: 760 рублей</span></p>
+                        <br>
+                        <p>Город расположен в Азии, в центральной части Забайкалья. Чита лежит в Читино-Ингодинской впадине и на склонах хребтов Яблоновый (с запада) и Черского (с востока), при впадении р. Чита (местные жители часто называют её «Читинка») в р. Ингода.</p>
+
+                    </div>
+                    <span class="bottom">
+    					<a class="btn btn-primary-brdr btn-medium" href="https://biletavto.ru/schedule/chita/borzya/">Купить</a>
+    				</span>
+                </div>
+
+
+
+                <div class="offer offer-banner" style="background-image: url(/assets/bilet/images/pop/Sludanka.jpg);">
+                    <div class="shadow"></div>
+                    <div class="content">
+
+                        <h4>&nbsp;</h4>
+                        <p class="strategy" style="font-size: 22px;">Иркутск - Слюдянка</p>
+                        <span class="sep"></span>
+                        <p class="pers"><span>185</span> руб.</p>
+                        <!-- <img src="/content/images/tmp/invest/pic-1.png" alt=""> -->
+                        <br>
+                        <p>Слюдянка: Есть на Байкале место, которое притягивает искателей сокровищ и любителей самоцветов со всего мира.</p>
+                    </div>
+                    <div class="content_hover">
+                        <h4>Иркутск<br>Слюдянка</h4>
+                        <span class="sep"></span>
+                        <p><span>Цена билета: 185 рублей</span></p>
+                        <br>
+                        <p>
+                            Здесь сосредоточено более 300 видов минералов и самоцветов, а это практически одна десятая часть из всего познанного царства минералов во всей Вселенной. Южное Прибайкалье, да и вся Восточная Сибирь удивительно богата самоцветами.
+                        </p>
+
+                    </div>
+                    <span class="bottom">
+    					<a class="btn btn-primary-brdr btn-medium" href="https://biletavto.ru/schedule/irkutsk/slyudyanka/">Купить</a>
+    				</span>
+                </div>
+
+                <div class="offer offer-banner" style="background-image: url(/assets/bilet/images/pop/mogotyi.jpg);">
+                    <div class="shadow"></div>
+                    <div class="content">
+
+                        <h4>&nbsp;</h4>
+                        <p class="strategy" style="font-size: 22px;">Могойтуй - Улан-Удэ</p>
+                        <span class="sep"></span>
+                        <p class="pers"><span>1566</span> руб.</p>
+                        <!-- <img src="/content/images/tmp/invest/pic-1.png" alt=""> -->
+                        <br>
+                        <p>Могойтуй расположен на территории Агинского Бурятского округа</p>
+                    </div>
+                    <div class="content_hover">
+                        <h4>Могойтуй<br>Улан-Удэ</h4>
+                        <span class="sep"></span>
+                        <p><span>Цена билета: 1566 рублей</span></p>
+                        <br>
+                        <p>Могойтуй расположен на территории Агинского Бурятского округа, является важнейшей железнодорожной станцией в округе, и стоит на федеральной автодороге А350 до Забайкальска и государственной границы с Китайской Народной Республикой (г. Маньчжурия).</p>
+
+                    </div>
+                    <span class="bottom">
+    					<a class="btn btn-primary-brdr btn-medium" href="https://biletavto.ru/schedule/mogoytuy/ulan_ude/">Купить</a>
+    				</span>
+                </div>
+
+
+            </section>
+            <section class="offers-row clearer invest-offers">
+
+                <div class="offer offer-banner" style="background-image: url(/assets/bilet/images/pop/kasan.jpg);">
+                    <div class="shadow"></div>
+                    <div class="content">
+
+                        <h4>&nbsp;</h4>
+                        <p class="strategy" style="font-size: 22px;">Казань - Москва</p>
+                        <span class="sep"></span>
+                        <p class="pers"><span>1200</span> руб.</p>
+                        <!-- <img src="/content/images/tmp/invest/pic-1.png" alt=""> -->
+                        <br>
+                        <p>Столица Татарстана – Казань. Визитной карточкой города, основанного в начале XI века, являются Кремль и площадь Тысячелетия. Особенностью Казани является переплетение двух великих культур – русской и татарской.</p>
+                    </div>
+                    <div class="content_hover">
+                        <h4>Казань<br>Москва</h4>
+                        <span class="sep"></span>
+                        <p><span>Цена билета: 1200 рублей</span></p>
+                        <br>
+                        <p>Здесь православные храмы (Благовещенский собор Казанского кремля, Петропавловский и Богоявленский соборы) мирно соседствуют с католическим храмом Воздвижения Святого Креста и многочисленными мечетями (наиболее знамениты мечеть Кул-Шариш, Галеевская, Апанаевская и Султановская мечети).</p>
+
+                    </div>
+                    <span class="bottom">
+    					<a class="btn btn-primary-brdr btn-medium" href="https://biletavto.ru/schedule/kazany/moskva/">Купить</a>
+    				</span>
+                </div>
+
+                <div class="offer offer-banner" style="background-image: url(/assets/bilet/images/pop/rostovnadonu.jpg);">
+                    <div class="shadow"></div>
+                    <div class="content">
+
+                        <h4>&nbsp;</h4>
+                        <p class="strategy" style="font-size: 22px;">Ростов-на-Дону - Харьков</p>
+                        <span class="sep"></span>
+                        <p class="pers"><span>1965</span> руб.</p>
+                        <!-- <img src="/content/images/tmp/invest/pic-1.png" alt=""> -->
+                        <br>
+                        <p>Ростов-на-Дону — крупнейший город на юге Российской Федерации, административный центр Ростовской области и Южного федерального округа. Город воинской славы (2008).Основан грамотой императрицы Елизаветы Петровны от 15 декабря 1749 года.</p>
+                    </div>
+                    <div class="content_hover">
+                        <h4>Ростов-на-Дону<br>Харьков</h4>
+                        <span class="sep"></span>
+                        <p><span>Цена билета: 1965 рублей</span></p>
+                        <br>
+                        <p>В 2012 году Ростов-на-Дону занял 5-е место в рейтинге качества городской среды. В 2018 году Ростов-на-Дону станет одним из городов, в которых будет проводиться чемпионат мира по футболу.</p>
+
+                    </div>
+                    <span class="bottom">
+    					<a class="btn btn-primary-brdr btn-medium" href="https://biletavto.ru/schedule/rostov_na_donu/harykov/">Купить</a>
+    				</span>
+                </div>
+
+                <div class="offer offer-banner" style="background-image: url(/assets/bilet/images/pop/vladivostok.jpg);">
+                    <div class="shadow"></div>
+                    <div class="content">
+
+                        <h4>&nbsp;</h4>
+                        <p class="strategy" style="font-size: 22px;">Владивосток - Лучегорск</p>
+                        <span class="sep"></span>
+                        <p class="pers"><span>1753</span> руб.</p>
+
+                        <br>
+                        <p>Владивосток — город и порт на Дальнем Востоке России, административный центр Приморского края и Владивостокского городского округа.</p>
+                    </div>
+                    <div class="content_hover">
+                        <h4>Владивосток<br>Лучегорск</h4>
+                        <span class="sep"></span>
+                        <p><span>Цена билета: 1753 рубля</span></p>
+                        <br>
+                        <p>Основан как военный пост Владивосток (от «владеть Востоком») в 1860 году, в 1880 году получил статус города. С 1888 года — административный центр Приморской области, с 1938 года — Приморского края.</p>
+
+                    </div>
+                    <span class="bottom">
+    					<a class="btn btn-primary-brdr btn-medium" href="/schedule/vladivostok/luchegorsk/">Купить</a>
+    				</span>
+                </div>
+
+
+            </section>
+        </div>
+    </section>
+    <section class="nomobile">
+        <!--<div class="center">-->
+
+        <div id="5c4f934dc08f6f2a26a9e8479923c432843b5de0e10b716c3c0b3d295d112432" style="padding-top:15px; padding-bottom:15px; width: 100% !important;">
+            <style>
+                .5c4f934dc08f6f2a26a9e8479923c432843b5de0e10b716c3c0b3d295d112432_form_line p,
+                .5c4f934dc08f6f2a26a9e8479923c432843b5de0e10b716c3c0b3d295d112432_form_line h1,
+                .5c4f934dc08f6f2a26a9e8479923c432843b5de0e10b716c3c0b3d295d112432_form_line h2,
+                .5c4f934dc08f6f2a26a9e8479923c432843b5de0e10b716c3c0b3d295d112432_form_line h3,
+                .5c4f934dc08f6f2a26a9e8479923c432843b5de0e10b716c3c0b3d295d112432_form_line h4,
+                .5c4f934dc08f6f2a26a9e8479923c432843b5de0e10b716c3c0b3d295d112432_form_line h5,
+                .5c4f934dc08f6f2a26a9e8479923c432843b5de0e10b716c3c0b3d295d112432_form_line h6 {
+                    margin: 0!important;
+                    color: inherit!important;
+                    font: inherit!important;
+                }
+
+            </style>
+            <p style="text-align:center; font-size:16px; font-weight: bold">Подпишитесь на нашу рассылку, чтобы быть в курсе самых выгодных предложений!</p>
+            <input type="hidden" name="sform[hash]" value="5c4f934dc08f6f2a26a9e8479923c432843b5de0e10b716c3c0b3d295d112432">
+            <div class="5c4f934dc08f6f2a26a9e8479923c432843b5de0e10b716c3c0b3d295d112432_form_line" style="
+    padding-bottom: 15px;
+">
+
+                <div style="text-align: center !important;padding: 5px !important;">
+                    <div style="display: inline-block;">
+                        <!--<div elemtype="sform-label" style="margin-bottom: 5px;font-family: Arial,'Helvetica Neue',Helvetica,sans-serif; !important;font-size: 12px !important;font-weight: bold !important;color: #B2B2B2 !important;text-align: left !important;">
+        				Ваш email:
+        			</div>-->
+
+                        <div elemtype="sform-input" style="
+    float: left;
+">
+                            <input class="5c4f934dc08f6f2a26a9e8479923c432843b5de0e10b716c3c0b3d295d112432_email" placeholder="Ваш e-mail" style="padding: 5px !important;border-width: 2px !important;border-style: solid !important;border-color: #bdbaba !important;width: 300px !important;font-family: Arial,'Helvetica Neue',Helvetica,sans-serif; !importantfont-size: 12px !important;font-weight: normal !important;color: #666 !important;" maxlength="255" name="sform[email]" type="email" required="required">
+                        </div>
+                        <div style="float: right;text-align: center !important;/* padding: 5px !important; *//* padding-top: 5px !important; *//* padding-bottom: 5px !important; */padding-left: 10px;">
+                            <div style="display: inline-block;" elemtype="sform-button">
+                                <button id="button5c4f934dc08f6f2a26a9e8479923c432843b5de0e10b716c3c0b3d295d112432" style="text-decoration: none;text-align: center;border-collapse:inherit;border-image: none;color: #000000 !important;font-family: Arial,'Helvetica Neue',Helvetica,sans-serif !important;font-size: 20px !important;font-weight: normal !important;background-color: #efb810 !important;width: 250px !important;height: 45px !important;cursor: pointer;border-width: 0px;border-style: solid;padding: 5px;;" onclick="sform5c4f934dc08f6f2a26a9e8479923c432843b5de0e10b716c3c0b3d295d112432._button(this);">
+        			    Подписаться
+        			</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+            <div id="_plain_message5c4f934dc08f6f2a26a9e8479923c432843b5de0e10b716c3c0b3d295d112432" style="display:none;"></div>
+
+            <!--<div>
+        	<div style="display: inline-block !important;text-align: center !important;width: 100% !important;font-size: 12px !important;font-family: Arial,'Helvetica Neue',Helvetica,sans-serif !important;color='#2A6496' !important;padding: 10px !important;font-weight:normal !important;" elemtype="sform-text"><a href="https://sendpulse.com/?rg=4&uid=6588700"><img src="https://cdn.sendpulse.com/img/logoimage.png" alt="email рассылки" style="width:100px"></a></div>
+        </div>-->
+
+
+        </div>
+        <script type="text/javascript" src="https://fast.sendpulse.com/members/forms/user-form-js/ac/5c4f934dc08f6f2a26a9e8479923c432843b5de0e10b716c3c0b3d295d112432/c/1/"></script>
+        <script type="text/javascript">
+            var sform_lang = 'ru'
+
+        </script>
+        <!--</div>-->
+    </section>
+    <section class="slide srochno_preemush" style="background:#EEF5FF">
+        <!--<h2>Пресса о нас</h2>-->
+        <p style="text-align:center; font-size: 26px; ">Пресса о нас</p>
+        <div class="center">
+            <div class="row">
+                <div class="col25" style="padding-right: 50px">
+                    <div class="ph">
+                        <span>
+        				<a rel="nofollow" href="http://egov-buryatia.ru/index.php?id=2484&tx_ttnews%5Btt_news%5D=40354&cHash=4e6ce9c909028cf0fb2f0d12be8dd5ed" target="_blank">
+        				    <img src="/assets/bilet/images/pressa/ofiz-line-2.png" alt="" width="128px" >
+        			    </a>
+    			    </span>
+                    </div>
+                </div>
+
+                <div class="col25" style="padding-right: 50px">
+                    <div class="ph"><span>
+				<a rel="nofollow" href="https://www.baikal-daily.ru/news/16/189033/?sphrase_id=6949276" target="_blank">
+				<img src="/assets/bilet/images/pressa/baikaldaily.png" alt="" width="128px" >
+				</a>    
+				</span></div>
+                </div>
+
+                <div class="col25" style="padding-right: 50px">
+                    <div class="ph"><span>
+				<a rel="nofollow" href="http://www.infpol.ru/news/society/121207-elektronnyy-bilet-na-avtobus-bystro-i-udobno-s-biletavto-ru/" target="_blank">
+				    <img src="/assets/bilet/images/pressa/infopol.png" alt="" width="86" >
+				</a>
+				</span></div>
+                </div>
+
+                <div class="col25" style="padding-right: 50px">
+                    <div class="ph"><span>
+				<a rel="nofollow" href="https://tvcom-tv.ru/news/detail.php?ELEMENT_ID=54080" target="_blank">
+				    <img src="/assets/bilet/images/pressa/tivikom-line.png" alt="" width="128px" >
+				</a>
+				</span></div>
+                </div>
+                <div class="col25" style="padding-right: 50px">
+                    <div class="ph"><span>
+				<a rel="nofollow" href="http://tuday.ru/news/transport/7778333/" target="_blank">
+				    <img src="/assets/bilet/images/pressa/tuday.png" alt="" width="128px" >
+				</a>
+				</span></div>
+                </div>
+                <div class="col25" style="padding-right: 50px">
+                    <div class="ph"><span>
+				    <a rel="nofollow" href="http://www.baikaltravel.ru/agency-for-tourism/news/detail.php?ID=2512" target="_blank">
+				        <img src="/assets/bilet/images/pressa/baikal-travel-logo-line.png" alt="" width="128px" >
+				    </a>
+				    </span></div>
+                </div>
+                <div class="col25" style="padding-right: 50px">
+                    <div class="ph"><span>
+				<a rel="nofollow" href="http://selorodnoe.ru/news/show/id3694608/" target="_blank">
+				    <img src="/assets/bilet/images/pressa/rodnoeselo.png" alt="" width="128px" >
+				</a>
+				</span></div>
+                </div>
+
+
+                <div class="clear"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide headship-quote nomobile">
+        <div class="center">
+            <div class="item">
+                <div class="bubble-item-row">
+                    <div class="col25 bubble-item">
+                        <img class="ph" src="/assets/bilet/images/quote/woomen1.jpg" alt="Цыренова Мария">
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="quote">Впервые воспользовалась покупкой билета онлайн. Огромное спасибо за ваш труд. Очень удобно и быстро. СПАСИБО!!!</div>
+                <div class="author">
+                    <b>Цыренова Мария</b> Куплен билет: Улан-Удэ - Турунтаево
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="item invisible">
+                <div class="bubble-item-row">
+                    <div class="col25 bubble-item">
+                        <img class="ph" src="/assets/bilet/images/quote/man1.jpg" alt="Сергеев Олег">
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="quote">Что-то невероятное, ребята большие молодцы! Наконец-то мы можем купить билет онлайн! Такая экономия времени! Всем советую!</div>
+                <div class="author">
+                    <b>Сергеев Олег</b> Куплен билет: Улан-Удэ - Иркутск
+                </div>
+
+                <div class="clear"></div>
+            </div>
+
+            <div class="item invisible">
+                <div class="bubble-item-row">
+                    <div class="col25 bubble-item">
+                        <img class="ph" src="/assets/bilet/images/quote/alla_baljik.jpg" alt="Алла Бальжик">
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="quote">Сайт очень понравился - есть варианты выбора не только даты поездки, но и времени. Всё очень удобно – несколько кликов и билет уже куплен. Отличная экономия времени и денег. Успеха и дальнейшего развития!</div>
+                <div class="author">
+                    <b>Алла Бальжик</b> Куплен билет: Екатеринбург - Серов
+                </div>
+
+                <div class="clear"></div>
+            </div>
+
+            <div class="item invisible">
+                <div class="bubble-item-row">
+                    <div class="col25 bubble-item">
+                        <img class="ph" src="/assets/bilet/images/quote/ivan_stroev.jpg" alt="Иван Строев">
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="quote">Всё очень удобно. Процесс покупки билета максимально понятен. Выбрал – оплатил – получил – поехал. Всё – просто! Теперь пользуюсь только этим сайтом. Спасибо за удобный сервис. </div>
+                <div class="author">
+                    <b>Иван Строев</b> Куплен билет: Москва - Ростов-на-Дону
+                </div>
+
+                <div class="clear"></div>
+            </div>
+
+            <a class="arr left" href="#"></a>
+            <a class="arr right" href="#"></a>
+        </div>
+    </section>
+    <section>
+        <style>
+            p {
+                font-size: 14px
+            }
+
+        </style>
+        <div class="center" style="padding-top: 15px">
+            <p style="text-align:justify;">
+                <h2 style="font-size:18px; font-weight:bold; margin:initial; text-align:initial; line-height:initial;">Купить билеты на автобусы онлайн</h2>
+            </p>
+            <p style="text-align:justify;">Когда хочется добраться из пункта А в пункт Б с комфортом и недорого, многие пассажиры выбирают автобус. Это действительно удобно: не нужно следить за дорогой, как в поездках на собственном авто, не приходится переплачивать за скорость, как при авиаперелетах, и не нужно пересаживаться с поезда дальнего следования на электричку или ловить «попутку».</p>
+            <p style="text-align:justify;">Единственным неудобством раньше была необходимость приезжать на автовокзал и стоять в очереди, чтобы приобрести билеты, к примеру, на автобусы дальнего следования. Сегодня вы можете купить билеты на автобус в режиме онлайн в любое удобное время.</p>
+            <p style="text-align:justify;">Через сервис Biletavto можно заказать любое количество билетов на междугородние автобусы по всей России и ближнему зарубежью. Кроме того, мы предлагаем билеты на пригородные направления, в том числе на маршрутки, следующие до населенных пунктов, куда можно добраться только наземным транспортом. Практически в любой город, райцентр – туда, где есть дороги.</p>
+            <p style="text-align:justify;">
+                <h2 style="font-size:18px; font-weight:bold; margin:initial; text-align:initial; line-height:initial;">Как купить билеты на автобус онлайн? </h2>
+            </p>
+            <p style="text-align:justify;">В <a href="https://biletavto.ru/schedule/"><u>расписании</u></a> отображается полная информация о стоимости поездки, регулярности и времени отправления и прибытия, расстоянии между городами, количестве свободных мест, номере маршрута и марке автотранспорта. </p>
+            <p style="text-align:justify;">Выбрав в онлайн-режиме свой маршрут и наиболее комфортные, на ваш взгляд, места в автобусе, нажмите кнопку «Купить». Далее следуйте <a href="https://biletavto.ru/faq/"><u>инструкции</u></a>.</p>
+            <p style="text-align:justify;">Пожалуйста, внимательно заполняйте форму о данных пассажира (если билетов несколько, заполняются поля для всех, на чье имя приобретаются билеты): ФИО, паспортные данные, e-mail и номер телефона.</p>
+            <p style="text-align:justify;">Завершающий шаг – оплата. Мы принимаем банковские карты, электронные деньги и наличные (через кассы и терминалы «Евросети», салон связи «Связной»). Оплаченные билеты придут на ваш e-mail. Распечатайте билет и приезжайте на автовокзал. В кассе ничего подтверждать не нужно, но для посадки в автобус вместе с билетом нужно предъявить удостоверение личности.</p>
+            <p style="text-align:justify;">Если нет возможности распечатать билет, сохраните его в мобильном телефоне или на планшете, распечатать же можете на кассе перед отправкой автобуса.</p>
+            <p style="text-align:justify;">
+                <h2 style="font-size:18px; font-weight:bold; margin:initial; text-align:initial; line-height:initial;">Где узнать о стоимости билета и каковы гарантии пассажира?</h2>
+            </p>
+            <p style="text-align:justify;">Вы приобретаете билеты по реальной цене, которая отображается при оформлении заказа. Доплат на вокзале с вас никто не потребует. Что касается гарантий, сервис Biletavto заключил прямые договоры со всеми автовокзалами из нашего списка. Ваш маршрут оформляется по всем требованиям перевозчиков, а билеты имеют такую же силу, как и приобретенные непосредственно на вокзале.</p>
+            <p style="text-align:justify;">Даже если вы привыкли покупать билеты на вокзалах и считаете, что «так надежнее», наш сервис все равно будет вам полезен. Вы всегда сможете отследить наличие свободных мест, уточнить расписание, узнать телефоны справочных.</p>
+            <p style="text-align:justify;">Купив через интернет билеты в любом направлении, вы будете спокойно готовиться к поездке, без очередей и потери времени. Попробуйте и убедитесь, насколько это просто. Счастливого пути!</p>
+        </div>
+    </section>
+    <!-- textinfo - сниппет для вывода столбцов с текстом -->
+
+    <!--<section class="slide slide-banner banner-small nomobile" style="background-image: url(/assets/bilet/images/winner_l.jpg)">
+	<div class="content-wrapper center">
+		<div class="content">
+			<h3 class="light">Победа в интернет-конкурсе «BaikalWeb»</h3>
+			<h2>Лучший информационно-справочный сайт</h2>
+			<a class="btn btn-info" href="https://biletavto.ru/sertifikatyi-i-diplomyi/">Подробнее</a>
+		</div>
+	</div>
+</section>-->
+    <!--
+<section class="slide center">
+<br>
+	<h2>
+		Покатили - сервис поиска попутчика
+	</h2>
+	
+
+</section>
+
+<section class="slide-banner page-cover-new nomobile" style="background-image: url(https://download.unsplash.com/uploads/1413259835094dcdeb9d3/6e609595)">
+	<div class="content-wrapper center">
+		<div class="content">
+			<a href="http://pocatili.ru/" target="_blank"><span class="play" rel=""></span></a>
+			<h3>Присоединяйтесь!</h3>
+			<p>Сервис «Покатили» — это средство, которое поможет Вам сэкономить, зарабатывать и найти новых знакомых!</p>
+
+		</div>
+	</div>
+</section>
+-->
+
+
+
+
+    <div class="loginMessage"></div>
+    <form method="post" action="https://biletavto.ru/" id="logon-popup" class="mfp-hide">
+
+        <p style="font-size: 25px; margin: 25px;">Авторизация</p>
+
+        <input type="hidden" name="action" value="" />
+        <input type="hidden" name="url" value="" />
+        <input type="hidden" name="agent" value="" />
+        <input type="hidden" name="area" value="" />
+        <input type="hidden" name="rememberme" value="1" />
+        <p>Для покупки билета на сайте необходимо авторизоваться.</p>
+        <label>
+		<span>E-mail</span>
+		<input type="text" name="username" maxlength="50" placeholder="ivanov@gmail.com" required/>
+	</label>
+
+        <label>
+		<span>Пароль</span>
+		<input type="password" name="password" maxlength="32" required/>
+	</label>
+
+        <input class="loginLoginValue" type="hidden" name="service" value="login" />
+
+
+        <button class="btn" type="submit" name="Login">Войти</button>
+
+        <a class="btn reglive" href="javascript:void(0)" data-mfp-src="#RegistrationForm">Зарегистрироваться</a>
+    </form>
+
+
+
+
+
+    <form class="mfp-hide reg-form" action="https://biletavto.ru/" id="RegistrationForm" method="post">
+        <p style="font-size: 25px;color: white; margin: 20px;" align="center">Регистрация</p>
+
+        <div class="form">
+            <input type="hidden" name="nospam:blank" value="" />
+            <div class="row">
+                <div class="label"><span>Электронная почта</span></div>
+                <div class="field">
+                    <input data-val="true" data-val-email="Введите адрес электронной почты" data-val-length="The field Электронная почта must be a string with a minimum length of 5 and a maximum length of 50." data-val-length-max="50" data-val-length-min="5" data-val-required="The Электронная почта field is required." id="email" name="email" placeholder="ivanov@gmail.com" type="text" value="" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="label"><span>Пароль</span></div>
+                <div class="field">
+                    <input data-val="true" data-val-length="The field Пароль must be a string with a minimum length of 6 and a maximum length of 32." data-val-length-max="32" data-val-length-min="6" data-val-required="The Пароль field is required." id="password" name="password" type="password" value="" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="label"></div>
+                <div class="field">
+                    <label class="ch">
+						<input class="small" data-val="true" data-val-mustbetrue="The field  must be checked." data-val-required="The agree field is required." id="agree" name="agree" type="checkbox" value="true" />
+						<input name="agree" type="hidden" value="false" />
+						Я&nbsp;даю согласие на&nbsp;передачу и&nbsp;обработку своих персональных данных. <br> <a href="https://biletavto.ru/policy/" style="color: #faffbd;" target="_blank">Политика обработки персональных данных</a>
+					</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="label"></div>
+                <div class="field">
+                    <input type="submit" class="btn btn-info-brdr" name="registerbtn" value="Зарегистрироваться" />
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+    <footer>
+        <style>
+            .ico-pay {
+                padding-left: 15px;
+            }
+
+            .ico-div {
+                display: flex;
+                background: #f6f5f3;
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: center;
+
+            }
+
+            .countries {
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+                justify-content: space-between;
+            }
+
+            .refLink {
+                color: #fff;
+            }
+
+        </style>
+        <div class="center">
+            <div class="countries">
+                <div class="refLink"><a class="refLink" href="https://biletavto.ru/country/">Страны:</a></div>
+                <div class="refLink"><a class="refLink" href="https://biletavto.ru/country/?country=russia">Россия</a></div>
+                <div class="refLink"><a class="refLink" href="https://biletavto.ru/country/?country=ukraine">Украина</a></div>
+                <div class="refLink"><a class="refLink" href="https://biletavto.ru/country/?country=belarus">Беларусь</a></div>
+                <div class="refLink"><a class="refLink" href="https://biletavto.ru/country/?country=poland">Польша</a></div>
+                <div class="refLink"><a class="refLink" href="https://biletavto.ru/country/?country=latvia">Латвия</a></div>
+                <div class="refLink"><a class="refLink" href="https://biletavto.ru/country/?country=lithuania">Литва</a></div>
+                <div class="refLink"><a class="refLink" href="https://biletavto.ru/country/?country=armenia">Армения</a></div>
+                <div class="refLink"><a class="refLink" href="https://biletavto.ru/country/?country=georgia">Грузия</a></div>
+            </div>
+            <br><br>
+            <div class="copyright">
+                <a style="color: #fff; margin: 0 15px 0 0;" href="https://biletavto.ru/">Главная</a>
+                <a style="color: #fff; margin: 0 15px;" href="https://biletavto.ru/schedule/">Расписание</a>
+                <a style="color: #fff; margin: 0 15px;" href="https://biletavto.ru/soglashenie-publichnoj-ofertyi/">Договор оферты</a>
+                <a style="color: #fff; margin: 0 15px;" href="https://biletavto.ru/contacts/">Контакты</a>
+                <a style="color: #fff; margin: 0 15px;" href="https://biletavto.ru/faq/">Вопросы/Ответы</a>
+                <a style="color: #fff; margin: 0 15px;" href="https://biletavto.ru/vozvrat-bileta-na-avtobus/">Возврат билета</a>
+                <a style="color: #fff; margin: 0 15px;" href="https://biletavto.ru/raspisanie-marshrutok/">Расписание маршруток</a>
+                <a style="color: #fff; margin: 0 15px;" href="https://biletavto.ru/raspisanie-prigorodnyx-marshrutov/">Расписание пригородных маршрутов</a>
+                <a style="color: #fff; margin: 0 15px;" href="https://biletavto.ru/policy/">Политика конфиденциальности</a>
+                <a style="color: #fff; margin: 0 15px;" href="https://biletavto.ru/agents/">Агентам</a>
+                <br><br>
+                <p style="margin: 10px 0 0 0;">E-mail: info@biletavto.ru</p>
+                <!--<p>Телефон: 8 (800) 200-44-01 (с 4ч. до 16ч., ежедневно по Московскому времени) </p>-->
+
+
+                <!-- А вот тут магия флексбокса -->
+                <div style="display: flex;">
+                    <div>
+                        <div style="height: 30px;">На нашем сайте доступны самые популярные способы оплаты:</div>
+                        <div class="ico-div" style="padding-top: 5px;padding-bottom: 5px;">
+                            <div><img src="/assets/bilet/images/ico/pay/visa.svg" alt="Visa" class="ico-pay"></div>
+                            <div><img src="/assets/bilet/images/ico/pay/mastercard.svg" alt="Mastercard" class="ico-pay"></div>
+                            <div><img src="/assets/bilet/images/ico/pay/maestro.svg" alt="Maestro" class="ico-pay"></div>
+                            <!--<div><img src="/assets/bilet/images/ico/pay/y.wallet.svg" alt="Яндекс Кошелек" class="ico-pay"></div>-->
+                            <div><img src="/assets/bilet/images/ico/pay/webmoney.svg" alt="Webmoney" class="ico-pay"></div>
+                            <div><img src="/assets/bilet/images/ico/pay/qiwi.svg" alt="Qiwi" class="ico-pay"></div>
+                            <!--<div><img src="/assets/bilet/images/ico/pay/sberbank.png" alt="Сбербанк" class="ico-pay"></div>-->
+                            <div><img src="/assets/bilet/images/ico/pay/alfa.svg" alt="Альфа-Клик" class="ico-pay"></div>
+                            <div><img src="/assets/bilet/images/ico/pay/masterpass.svg" alt="Мasterpass" class="ico-pay"></div>
+                            <div><img src="/assets/bilet/images/ico/pay/psb.svg" alt="Промсвязьбанк" class="ico-pay"></div>
+                            <div><img src="/assets/bilet/images/ico/pay/kuppiru.svg" alt="Куппи.ру" class="ico-pay"></div>
+                        </div>
+                    </div>
+
+                    <div style="width: 577px; text-align: right">
+                        <div style="height: 30px;">Безопасность оплаты на сайте обеспечивают наши партнёры:</div>
+                        <div class="ico-div">
+                            <div><img src="/assets/bilet/images/ico/pay/yandex-dengi.png" width="100px" alt="Яндекс Кошелек" class="ico-pay"></div>
+                            <div><img src="/assets/bilet/images/ico/pay/sber_fulli.png" width="100px" alt="Сбербанк" class="ico-pay"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                <div class="soc" style="position: relative; top: 10px; float: left;">
+                    <t style="
+                float: left;
+                padding-right: 25px;
+                padding-top: 10px;
+            ">Присоединяйтесь к нам в социальных сетях: </t>
+                    <a class="vk" href="https://vk.com/biletavto" rel="nofollow" target="_blank"></a>
+                    <a class="fb" href="https://ok.ru/biletavto" rel="nofollow" target="_blank"></a>
+                    <a class="tw" href="https://www.instagram.com/biletavto/" rel="nofollow" target="_blank"></a>
+                    <a class="fb" style="background-position: -120px 0;" rel="nofollow" href="https://www.facebook.com/biletavto" target="_blank"></a>
+
+                    <!--<a href="http://www.instagram.com/biletavto/" target="_blank"></a>-->
+                </div>
+                <br><br>
+                <span style="float: right; ">БилетАвто</span><br>
+                <span style="float: right;">ООО «Антариз»</span>
+                <span style="float: right;">ОГРН 1130327002960 </span><br>
+                <span style="float: right;">ИНН/КПП	0326511681 / 032601001</span>
+                <span style="margin-right: 15px;">biletavto.ru © 2014-2018</span><br>
+                <span style="margin: 20px 0; font-size: 10px;">Сайт заказа билетов на автобус. Все права защищены.</span>
+                <span style="float: right;">Адрес для почтовых отправлений: 670002, г. Улан-Удэ, ул. Буйко 20а, офис 3</span><br>
+                <span style="float: right;">Телефон: 8 (800) 200-44-01 (с 4ч. до 16ч., ежедневно по Московскому времени)</span><br>
+                <span style="float: right;">107207, г. Москва, Щёлковское ш., 75</span>
+            </div>
+        </div>
+    </footer>
+
+    <div class="mobile">
+        <div class="footer">
+            <div class="links">
+                <a href="https://biletavto.ru/">Главная</a> &middot;
+                <a href="https://biletavto.ru/schedule/">Расписание</a> &middot;
+                <a href="https://biletavto.ru/soglashenie-publichnoj-ofertyi/">Договор оферты</a>
+            </div>
+            <div class="copyright">
+                <span style="margin-right: 15px;">biletavto.ru © 2014-2018</span>
+                <span style="margin-right: 15px;">ООО «Антариз»</span>
+                <span style="float: right;">г. Улан-Удэ, ул. Буйко 20а, офис 3</span>
+                <span style="margin-right: 15px;">ОГРН 1130327002960  ИНН/КПП	0326511681 / 032601001</span>
+                <p style="margin: 20px 0; font-size: 10px;">Сайт заказа билетов на автобус. Все права защищены. </p>
+
+                <!--
+    Query Time: 0,0856 s
+    Request: 63
+    PHP Exec: 0,0000 s
+    Total time: 0,4907 s 
+-->
+            </div>
+        </div>
+    </div>
+
+    <!-- BEGIN JIVOSITE CODE {literal} -->
+    <!--
+    <script type='text/javascript'>
+        (function() {
+            var widget_id = '7GLidp3p4E';
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = '//code.jivosite.com/script/widget/' + widget_id;
+            var ss = document.getElementsByTagName('script')[0];
+            ss.parentNode.insertBefore(s, ss);
+        })();
+
+    </script>
+-->
+    <!-- {/literal} END JIVOSITE CODE -->
+
+    <!-- google -->
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-64602549-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+    <!-- end google -->
+
+    <!--vk таргентинг-->
+    <script type="text/javascript">
+        (window.Image ? (new Image()) : document.createElement('img')).src = 'https://vk.com/rtrg?p=VK-RTRG-139481-4xGsf';
+
+    </script>
+    <!-- end vk таргентинг-->
+
+
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter31156756 = new Ya.Metrika({
+                        id: 31156756,
+                        clickmap: true,
+                        trackLinks: true,
+                        accurateTrackBounce: true,
+                        webvisor: true
+                    });
+                } catch (e) {}
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function() {
+                    n.parentNode.insertBefore(s, n);
+                };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else {
+                f();
+            }
+        })(document, window, "yandex_metrika_callbacks");
+
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/31156756" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    <noindex>
+        <script async src="https://stats.lptracker.ru/code/new/44316"></script>
+    </noindex>
+    <!-- LPTracker counter -->
+
+    <script type="text/javascript">
+        function tH(el) {
+            var p = el.parentNode,
+                next = p.nextSibling;
+            while (next.nodeType != 1) next = next.nextSibling;
+            next.style.left = p.offsetLeft + 'px';
+            next.style.top = p.offsetTop + 'px';
+            for (var i = 0; i < 6; i++) document.getElementById('h' + i).style.display = 'none';
+            next.style.display = 'block';
+        }
+
+        function hH(el, ev) {
+            if (ev.stopPropagation) ev.stopPropagation();
+            else ev.cancelBubble = true;
+            var target = ev.relatedTarget || ev.srcElement,
+                cssClass = target.getAttribute('class');
+            if ((!cssClass && el.tagName.toLowerCase != 'div') || cssClass.indexOf('rwh-') == -1) {
+                el.style.display = 'none';
+            }
+        }
+
+    </script>
+    <!-- end yandex.metrika   -->
+
+
+    <!-- modal_vk-->
+    <script src="/assets/bilet/modal/js/classie.js"></script>
+    <script src="/assets/bilet/modal/js/modalEffects.js"></script>
+    <!-- modal_vk-->
+
+    <div id="shadow"></div>
+
+
+    <script src="/assets/bilet/js/jquery.cookie.1.3.1.js"></script>
+    <script src="/assets/bilet/js/jquery.scrollTo.min.js"></script>
+    <script src="/assets/bilet/js/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/bilet/js/jquery.fancybox.js" type="text/javascript"></script>
+    <script src="/assets/bilet/js/jquery-ui.min.js"></script>
+    <script src="/assets/bilet/js/jquery.mousewheel.js"></script>
+    <script src="/assets/bilet/js/jquery.content-slider.js"></script>
+    <script src="/assets/bilet/js/jquery.formstyler.min.js"></script>
+    <script src="/assets/bilet/js/jqueryscrollslider.js"></script>
+    <script src="/assets/bilet/js/jquery.nouislider.all.min.js"></script>
+    <script src="/assets/bilet/js/jquery.tools.min.js"></script>
+    <script src="/assets/bilet/js/jquery.clickout.js"></script>
+    <script src="/assets/bilet/js/jquery.plugin.min.js"></script>
+    <script src="/assets/bilet/js/jquery.datepick.min.js"></script>
+
+    <script src="/assets/bilet/js/script.min.js?3"></script>
+    <script src="/assets/bilet/js/script_new.min.js?1"></script>
+    <script src="/assets/bilet/js/common.js?4"></script>
+
+    <!--[if lt IE 8]>
+	<script src="/content/js/ie8.js"></script>
+<![endif]-->
+    <!--[if lt IE 11]>
+	<div class="ie-update">Содержание страницы может некорректно отображаться на&nbsp;Вашем браузере. <a href="http://outdatedbrowser.com/ru">Обновите браузер</a> для доступа ко&nbsp;всей функциональности веб-страницы.</div>
+<![endif]-->
+
+    <script src="/assets/bilet/js/jquery.validate-1.11.1.min.js"></script>
+    <script src="/assets/bilet/js/jquery.validate.unobtrusive-5.min.js"></script>
+    <script src="/assets/bilet/js/custom-methods.js"></script>
+    <script src="/assets/bilet/js/messages_ru.js"></script>
+    <script src="/assets/bilet/js/validator.defaults.site.js"></script>
+
+    <script src="/assets/bilet/js/jquery.maskedinput.1.3.1.min.js"></script>
+    <script src="/assets/bilet/js/jquery.form.min.js"></script>
+
+
+    <script src="/assets/bilet/js/Base64.js"></script>
+    <script src="/assets/bilet/datetime/jquery.datetimepicker.js"></script>
+
+</body>
+
+</html>

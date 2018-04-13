@@ -1,0 +1,164 @@
+<link href="https://rtc-web-nd3.rostelecom-cc.ru/widget//src/css/ocWidget.css" rel="stylesheet">
+<script src="https://rtc-web-nd3.rostelecom-cc.ru/widget//src/js/ocWidget.core.js"></script>
+<script src="https://rtc-web-nd3.rostelecom-cc.ru/widget//src/js/ocWidget.bar.js"></script>
+<div class="ocWidget ocWidget-menuDisplay ocWidget-msg ocWidget-dragndrop-active ocWidget-chat-hide ocWidget-telegram ocWidget-viber" id="ocWidget">
+    <div class="ocWidget__chat" style="">
+        <div class="ocWidget__chat__top-wrapper">
+            <!-- FRAME TOP -->
+            <div class="ocWidget__chat__top">
+                <div class="ocWidget__chat__top-menu" data-onclick="ocWidget.chat.menu.toggle()">
+                    <div class="ocWidget__chat__top-menu-block">
+                        <div class="ocWidget__chat__top-menu-block-top"></div>
+                        <div class="ocWidget__chat__top-menu-block-mid"></div>
+                        <div class="ocWidget__chat__top-menu-block-bot"></div>
+                    </div>
+                </div>
+                <div class="ocWidget__chat__top-menuHeading ocWidget-heading">Меню</div>
+                <div class="ocWidget__chat__top-allHeading ocWidget-heading">Ростелеком</div>
+                <div class="ocWidget__chat__top-msgHeading ocWidget-description">веб-чат с компанией</div>
+                <div class="ocWidget__chat__top-csiHeading ocWidget-heading">Оценка сервиса</div>
+                <div class="ocWidget__chat__top-icoX" data-onclick="ocWidget.chat.hide()"></div>
+                <div class="ocWidget__chat__top-unreadMessages">0</div>
+            </div>
+        </div>
+        <div class="ocWidget__chat__mid-wrapper">
+            <!-- MOBILE VERTICAL SCREEN BLOCK -->
+            <div class="ocWidget__chat__horizontal-block">
+                <div class="ocWidget__chat__horizontal-block-center">
+                    <div class="ocWidget__chat__horizontal-block-text ocWidget-heading">Пожалуйста, поверните устройство</div>
+                </div>
+            </div>
+            <!-- FRAME MIDDLE -->
+            <div class="ocWidget__chat__mid">
+                <!-- ИНТЕРФЕЙС ЗАГРУЗКИ -->
+                <div class="ocWidget_loading-block">
+                    <div class="ocWidget_loading-sphere"></div>
+                </div>
+                <!-- ИНТЕРФЕЙС МЕНЮ -->
+                <div class="ocWidget__chat__mid__menu">
+                    <div class="ocWidget__chat__mid__menu--block">
+                        <div class="ocWidget__chat__mid__menu--block-wrapper">
+                            <div class="ocWidget__chat__mid__menu--block-wrapper-item ocWidget-heading">Ваш код сессии - <span id="ocWidget-sessionCode">19828971</span>
+                                <div class="ocWidget__chat__mid__menu-listInfo" title="Назовите этот код сотруднику, чтобы он подключился к чату"></div>
+                            </div> <a class="ocWidget__chat__mid__menu--block-wrapper-item ocWidget__chat__mid__menu--block-wrapper-item-viber" href="https://www.viber.com/Rostelecom" target="_blank"><span class="ocWidget-text">Написать в Viber</span></a> <a class="ocWidget__chat__mid__menu--block-wrapper-item ocWidget__chat__mid__menu--block-wrapper-item-telegram" href="https://telegram.me/Rostele_bot" target="_blank"><span class="ocWidget-text">Написать в Telegram</span></a> <a class="ocWidget__chat__mid__menu--block-wrapper-item ocWidget__chat__mid__menu--block-wrapper-item-vk" href="https://vk.com/" target="_blank"><span class="ocWidget-text">Написать в ВКонтакте</span></a> <a class="ocWidget__chat__mid__menu--block-wrapper-item ocWidget__chat__mid__menu--block-wrapper-item-facebook" href="https://www.facebook.com/" target="_blank"><span class="ocWidget-text">Написать в Facebook</span></a> <a class="ocWidget__chat__mid__menu--block-wrapper-item" href="#" data-onclick="ocWidget.chat.hide()"><span class="ocWidget-text">Скрыть веб-чат</span></a> </div>
+                    </div>
+                    <a href="http://omnichat.ru/" target="_blank">
+                        <div class="ocWidget__chat__mid__menu-copyright"></div>
+                    </a>
+                </div>
+                <!-- ИНТЕРФЕЙС АВТОРИЗАЦИИ -->
+                <div class="ocWidget__chat__mid__auth">
+                    <div class="ocWidget__chat__mid__auth__inputs">
+                        <div class="ocWidget__chat__mid__auth__inputs-input ocWidget__chat__mid__auth__inputs-input-name">
+                            <div class="ocWidget__chat__mid__auth__inputs-input--heading ocWidget-text">Имя:<span>*</span></div> <input id="ocWidget-auth-name" name="name" class="ocWidget__chat__mid__auth__inputs-input--input ocWidget-text" placeholder="Введите имя" type="text"> </div>
+                        <div class="ocWidget__chat__mid__auth__inputs-input ocWidget__chat__mid__auth__inputs-input-phone">
+                            <div class="ocWidget__chat__mid__auth__inputs-input--heading ocWidget-text">Телефон:<span>*</span></div> <input id="ocWidget-auth-phone" name="phone" class="ocWidget__chat__mid__auth__inputs-input--input ocWidget-text" placeholder="+7 ( ___ ) ___ - __ - __" data-onfocus="ocWidget.chat.auth.input.focus(event)" data-oninput="ocWidget.chat.auth.input.mask(event)" type="text"> </div>
+                        <div class="ocWidget__chat__mid__auth__inputs-input ocWidget__chat__mid__auth__inputs-input-message">
+                            <div class="ocWidget__chat__mid__auth__inputs-input--heading ocWidget-text">Сообщение:<span>*</span></div> <textarea id="ocWidget-auth-message" name="message" class="ocWidget__chat__mid__auth__inputs-input--input ocWidget-text" placeholder="Введите сообщение"></textarea> </div>
+                    </div>
+                    <div class="ocWidget__chat__mid__auth--button ocWidget-btnBg" data-onclick="ocWidget.chat.auth.checkBeforeRequest()">Отправить</div>
+                </div>
+                <!-- ИНТЕРФЕЙС ОПОВЕЩЕНИЯ -->
+                <div class="ocWidget__chat__mid__alert">
+                    <div class="ocWidget__chat__mid__alert__message">
+                        <div class="ocWidget__chat__mid__alert__message-text ocWidget-heading"> Здравствуйте! <br> Мы с удовольствием ответим на интересующие Вас вопросы </div>
+                        <div class="ocWidget__chat__mid__alert__message-link"></div>
+                    </div>
+                </div>
+                <!-- ИНТЕРФЕЙС ОФФЛАЙН -->
+                <div class="ocWidget__chat__mid__offline">
+                    <div class="ocWidget__chat__mid__offline--block">
+                        <div class="ocWidget__chat__mid__offline--block-heading ocWidget-heading">Нас нет онлайн!</div>
+                        <div class="ocWidget__chat__mid__offline--block-text">Напишите нам в один из мессенджеров ниже и мы ответим как только сможем</div>
+                        <div class="ocWidget__chat__mid__offline--block-ext">К сожалению, все операторы заняты, ожидайте, Вам ответит первый освободившийся специалист.</div> <a class="ocWidget__chat__mid__offline--block-telegram" href="https://telegram.me/Rostele_bot" target="_blank"></a> <a class="ocWidget__chat__mid__offline--block-viber" href="https://www.viber.com/Rostelecom" target="_blank"></a> <a class="ocWidget__chat__mid__offline--block-vk" href="https://vk.com/" target="_blank"></a> <a class="ocWidget__chat__mid__offline--block-facebook" href="https://www.facebook.com/" target="_blank"></a> </div>
+                    <div class="ocWidget__chat__mid__offline-showHistory ocWidget-btnDef" data-onclick="ocWidget.chat.offline.showHistory()">Показать историю</div>
+                </div>
+                <!-- ИНТЕРФЕЙС ЧАТА -->
+                <div class="ocWidget__chat__mid__msg" data-onscroll="ocWidget.chat.msg.pagination.scroll(event)"></div>
+                <!-- ИНТЕРФЕЙС ЗАГРУЗКИ ФАЙЛА -->
+                <form class="ocWidget__chat__mid__file-form">
+                    <div class="ocWidget__chat__mid__fileupload">
+                        <div class="ocWidget__chat__mid__fileupload--block">
+                            <div class="ocWidget__chat__mid__fileupload--block-heading ocWidget-heading">Отправка файла</div>
+                            <div class="ocWidget__chat__mid__fileupload--block-error-ext">Неподдерживаемый формат файла</div>
+                            <div class="ocWidget__chat__mid__fileupload--block-error-size">Файл превышает допустимый размер</div>
+                            <div class="ocWidget__chat__mid__fileupload--block-dragndrop"><input name="file1" id="ocWidget-fileUploadInput" data-onchange="ocWidget.chat.msg.fileUpload.check();" type="file"></div> <label for="ocWidget-fileUploadInput" class="ocWidget__chat__mid__fileupload--block-label ocWidget-btnBg">Выбрать файл</label> <br>
+                            <div class="ocWidget__chat__mid__fileupload--block-deny ocWidget-btnDef" data-onclick="ocWidget.chat.msg.fileUpload.hide(true)">Отменить</div>
+                        </div>
+                    </div>
+                    <!-- ИНТЕРФЕЙС DRAGNDROP -->
+                    <div class="ocWidget__chat__mid__dragndrop">
+                        <div class="ocWidget__chat__mid__dragndrop-image"></div> <input class="ocWidget__chat__mid__dragndrop-input" name="file2" id="ocWidget-dragndropInput" data-onchange="ocWidget.chat.msg.fileUpload.check();" type="file"> </div>
+                </form>
+                <!-- ИНТЕРФЕЙС CSI -->
+                <div class="ocWidget__chat__mid__csi">
+                    <div class="ocWidget__chat__mid__csi__rank">
+                        <div class="ocWidget__chat__mid__csi__rank-text ocWidget-text"> Оцените качество обслуживания нашим сотрудником </div>
+                    </div>
+                    <div class="ocWidget__chat__mid__csi__agent">
+                        <div class="ocWidget__chat__mid__csi__agent-photo"><img draggable="false" src="data:image/png;base64,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" alt=""></div>
+                        <div class="ocWidget__chat__mid__csi__agent-name">Оператор</div>
+                    </div>
+                    <div class="ocWidget__chat__mid__csi__rank__stars">
+                        <div class="ocWidget__chat__mid__csi__rank__stars-star1 ocWidgetIcon-favorite" data-rate="1"></div>
+                        <div class="ocWidget__chat__mid__csi__rank__stars-star2 ocWidgetIcon-favorite" data-rate="2"></div>
+                        <div class="ocWidget__chat__mid__csi__rank__stars-star3 ocWidgetIcon-favorite" data-rate="3"></div>
+                        <div class="ocWidget__chat__mid__csi__rank__stars-star4 ocWidgetIcon-favorite" data-rate="4"></div>
+                        <div class="ocWidget__chat__mid__csi__rank__stars-star5 ocWidgetIcon-favorite" data-rate="5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ocWidget__chat__bot-wrapper">
+            <!-- CHAT BOTTOM START -->
+            <div class="ocWidget__chat__bot">
+                <!-- CHAT -->
+                <div class="ocWidget__chat__bot__msg">
+                    <!-- TYPING START -->
+                    <div class="ocWidget__chat__bot__msg--typing">
+                        <div class="ocWidget__chat__bot__msg--typing-text ocWidget-description">печатает</div>
+                        <div class="ocWidget_spinner">
+                            <div class="ocWidget_bounce1"></div>
+                            <div class="ocWidget_bounce2"></div>
+                            <div class="ocWidget_bounce3"></div>
+                        </div>
+                    </div>
+                    <!-- TYPING END -->
+                    <!-- COBROWSING START -->
+                    <div class="ocWidget__chat__bot__msg--cobrowsePanel">
+                        <div class="ocWidget__chat__bot__msg--cobrowsePanel-heading ocWidget-heading">Общий доступ</div>
+                        <div class="ocWidget__chat__bot__msg--cobrowsePanel--loading">
+                            <div class="ocWidget__chat__bot__msg--cobrowsePanel--loading-heading ocWidget-heading">Подключение</div>
+                            <div class="ocWidget_spinner">
+                                <div class="ocWidget_bounce1"></div>
+                                <div class="ocWidget_bounce2"></div>
+                                <div class="ocWidget_bounce3"></div>
+                            </div>
+                        </div>
+                        <div class="ocWidget__chat__bot__msg--cobrowsePanel-icoX" data-onclick="ocCobrowsing.destroy()"></div>
+                    </div>
+                    <!-- COBROWSING END -->
+                    <!-- TEXTAREA MSG --><textarea placeholder="Введите текст сообщения" class="ocWidget__chat__bot__msg-textarea" data-onfocus="ocWidget.chat.msg.textarea.onfocus()" data-onblur="ocWidget.chat.msg.textarea.onblur()" data-oninput="ocWidget.chat.msg.textarea.oninput(event)" data-onpaste="ocWidget.chat.msg.textarea.onpaste(event)" data-onkeydown="ocWidget.chat.msg.textarea.onkeydown(event)"></textarea>
+                    <div class="ocWidget__chat__bot__msg-textarea--gradient"></div>
+                    <div class="ocWidget__chat__bot__msg-textarea--blockInput ocWidget-text">Слишком длинное сообщение <img data-code="1190" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" draggable="false" class="emoji code1190"></div>
+                    <div class="ocWidget__chat__bot__msg__fileUpload">
+                        <div class="ocWidget__chat__bot__msg__fileUpload-loading"></div>
+                        <div class="ocWidget__chat__bot__msg__fileUpload-ico"></div>
+                        <div class="ocWidget__chat__bot__msg__fileUpload-error-ext ocWidget-text">Неподдерживаемый формат файла</div>
+                        <div class="ocWidget__chat__bot__msg__fileUpload-error-size ocWidget-text">Файл превышает размер в 5 МБ</div>
+                        <div class="ocWidget__chat__bot__msg__fileUpload-text ocWidget-text">Название файла</div>
+                        <div class="ocWidget__chat__bot__msg__fileUpload-icoX" data-onclick="ocWidget.chat.msg.fileUpload.clear();return false;"></div>
+                    </div>
+                    <div class="ocWidget__chat__bot__msg-file ocWidget-btnDef" data-onclick="ocWidget.chat.msg.fileUpload.show()">Прикрепить файл</div>
+                    <div class="ocWidget__chat__bot__msg-send ocWidget-btnBg" data-onclick="ocWidget.chat.msg.message.send()">Отправить</div>
+                </div>
+                <!-- CSI -->
+                <div class="ocWidget__chat__bot__csi">
+                    <div class="ocWidget__chat__bot__csi-heading ocWidget-text">Комментарий:</div> <textarea placeholder="Не указан" value="" class="ocWidget__chat__bot__csi-textarea ocWidget-text"></textarea>
+                    <div class="ocWidget__chat__bot__csi-send ocWidget-btnBg">Отправить</div>
+                </div>
+            </div>
+            <!-- CHAT BOTTOM END -->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script src="/assets/bilet/js/jquery.js"></script>
+    <base href="https://biletavto.ru/" />
+    <title>Подарочные сертификаты БилетАвто</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="" name="description" />
+
+    <!-- [ [!If?
+   &subject=``
+   &operator=`EQ`
+   &operand=``
+   &then=`<meta content="" name="keywords" />`
+   &else=`<meta content="" name="keywords" />`
+] ] -->
+
+    <meta property="og:site_name" content="biletavto.ru" />
+    <meta property="og:title" content="Подарочные сертификаты БилетАвто | БилетАвто" />
+    <meta property="og:image" content="https://biletavto.ru/assets/bilet/images/site-cover.jpg" />
+    <meta property="og:url" content="https://biletavto.ru/" />
+    <meta property="og:description" content="" />
+
+
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+    <link rel="canonical" href="https://biletavto.ru/gifts/" />
+    <link rel="stylesheet" href="/assets/bilet/css/all.min.css?7" />
+    <link rel="stylesheet" href="/assets/bilet/css/jquery.fancybox.css" />
+    <link rel="stylesheet" media="screen and (max-width: 1079px)" href="/assets/bilet/css/tablet.min.css?4" />
+    <link rel="stylesheet" media="screen and (max-width: 709px)" href="/assets/bilet/css/mobile.min.css?3" />
+    <link rel="stylesheet" href="/assets/bilet/css/jquery-plugins.min.css?3" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <!-- <link rel="stylesheet" href="http://www.rbkmoney.ru/sites/default/files/banner/horizontal_files/css_gorizontal.css" type="text/css" media="all"/> -->
+
+
+
+
+    <link rel="stylesheet" href="/assets/bilet/template/css_v2/mobile.css">
+    <link rel="stylesheet" media="screen and (max-width: 709px)" href="/assets/bilet/css/mobile.min.css?3" />
+    <link rel="stylesheet" href="/assets/bilet/partners/css/bootstrap.min.css">
+    <link href="assets/biletavtoarmk/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- bxSlider Javascript file -->
+    <script src="/assets/bilet/template/js/jquery.bxslider.js"></script>
+    <!-- bxSlider CSS file -->
+    <link href="/assets/bilet/template/js/jquery.bxslider.css" rel="stylesheet" />
+
+    <style>
+        .ico-pay {
+            padding-left: 15px;
+        }
+
+        .ico-div {
+            display: flex;
+            background: #f6f5f3;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+            height: 45px;
+        }
+
+        .countries {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+
+        .refLink {
+            color: #fff;
+        }
+
+        .mobile {
+            display: none;
+        }
+    </style>
+
+    <script>
+        function AjaxFormRequest(result_id, formMain, url) {
+            jQuery.ajax({
+                url: url,
+                type: "POST",
+                dataType: "html",
+                data: jQuery("#" + formMain).serialize(),
+                success: function(response) {
+                    document.getElementById(result_id).innerHTML = response;
+                },
+                error: function(response) {
+                    document.getElementById(result_id).innerHTML = "<p>Возникла ошибка при отправке формы. Попробуйте еще разок</p>";
+                }
+            });
+
+            $(':input', '#formMain')
+                .not(':button, :submit, :reset, :hidden')
+                .val('')
+                .removeAttr('checked')
+                .removeAttr('selected');
+        }
+    </script>
+    <link rel="stylesheet" href="/assets/components/shopkeeper/css/web/default/style.css" type="text/css" />
+    <script type="text/javascript" src="/assets/components/shopkeeper/js/web/lang/ru.js?v=2.3.8"></script>
+    <script type="text/javascript" src="/assets/components/shopkeeper/js/web/shopkeeper.js?v=2.3.8"></script>
+
+    <script type="text/javascript">
+        var site_base_url = '/';
+        var shkOpt = jQuery.extend(shkOptDefault, {
+            prodCont: 'div.shk-item',
+            orderFormPage: '11',
+            orderFormPageUrl: '/order/',
+            changePrice: true,
+            flyToCart: 'nofly',
+            goToOrderFormPage: true,
+            psn: 'qbNdTWHb47eexdOG8cRrqw=='
+        });
+        SHK.data = {
+            price_total: 0,
+            items_total: 0,
+            items_unique_total: 0,
+            ids: []
+        };
+        jQuery(document).bind('ready', function() {
+            jQuery(shkOpt.prodCont).shopkeeper();
+        });
+    </script>
+</head>
+
+<body>
+
+    <div id="main-menu">
+        <div class="center">
+            <!--<a id="shopCart" class="open-account" href="#">Корзина (0)</a>
+-->
+            <!--a class="open-account" href="#">Корзина (1)</a-->
+            <a id="logo-small" href="/"></a>
+            <ul>
+                <li><a href="https://biletavto.ru/">Главная</a></li>
+                <li><a href="https://biletavto.ru/schedule/">Расписание</a></li>
+                <li><a href="https://biletavto.ru/faq/">Вопросы и ответы</a></li>
+                <li><a href="https://biletavto.ru/telefony-avtovokzalov/">Телефоны автовокзалов</a></li>
+                <li> <a href="https://biletavto.ru/#popular" data-scroll="#popular" data-filter="webinars">Популярные маршруты</a> </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="mobile-menu" style="display: none">
+        <div class="links">
+            <a href="https://biletavto.ru/"><span><img src="/assets/bilet/images/menu/main.png" alt="" /></span>Главная</a>
+            <a href="https://biletavto.ru/schedule/"><span><img src="/assets/bilet/images/menu/iis.png" alt="" /></span>Расписание</a>
+            <a href="https://biletavto.ru/faq/"><span><img src="/assets/bilet/images/menu/iis.png" alt="" /></span>Вопросы и ответы</a>
+
+            <!--<a href=""><span><img src="/assets/bilet/images/menu/trading.png" alt="" /></span>Водители</a> 
+		<a href=""><span><img src="/assets/bilet/images/menu/quotes.png" alt="" /></span>Автобусы</a>-->
+
+
+            <a href="javascript:void(0)" data-mfp-src="#logon-popup"><span><img src="/assets/bilet/images/menu/login.png" alt="" /></span>Вход / регистрация</a>
+
+
+        </div>
+    </div>
+    <header>
+        <div class="center">
+            <a id="logo" href="/"></a>
+
+            <div class="phone">
+                <a href="tel:88002004401" class="cpc-tel">8 (800) 200-44-01</a>
+            </div>
+
+            <ul id="top-menu">
+
+
+
+                <li>
+
+                    <a href="javascript:void(0)" data-mfp-src="#logon-popup" class="cabinet">Вход / регистрация</a>
+
+                </li>
+
+            </ul>
+            <ul></ul>
+        </div>
+
+        <div class="mobile invisible">
+            <a href="tel:88002004401" class="phone-header-icon cpc-tel">8 (800) 200-44-01</a>
+        </div>
+        <a id="menu-link" class="mobile toggle-link" data-toggle="#mobile-menu" href="javascript:;"></a>
+    </header>
+
+    <section class="slide center nomobile">
+    </section>
+
+    <section class="slide no_padding">
+        <div class="content-wrapper center with_bg">
+            <section class="slide support_tab">
+                <h1 class="support_tab_title text-center">Подарочные сертификаты БилетАвто</h1>
+                <p class="text-center">Хотите порадовать близких или партнеров по работе, сделать оригинальный подарок на день рождения или свадьбу, но нет ни одной идеи? Осуществите чью-то мечту о путешествии и подарите свободу выбора.</p>
+            </section>
+            <section class="slide">
+                <div class="text-center">
+                    <a class="btn btn-primary btn-lg active" role="button" style="height: auto !important;" href="gifts#choice">
+		            <i class="fa fa-gift"></i>
+		            Подарить сертификат
+		        </a>
+                </div>
+                <!--
+		    <div class="container-fluid">
+			    <div class="row">
+			        <div class="col-md-4 text-center">
+			            
+			            Будьте оригинальным - дарите путешествие!
+			        </div>
+			        <div class="col-md-4 text-center">2</div>
+			        <div class="col-md-4 text-center">3</div>
+			    </div>
+			</div>
+			-->
+            </section>
+        </div>
+    </section>
+
+    <section class="slide no_padding">
+        <div class="text-center" id="choice">
+            <h2 class="text-center">Выбрать подарочный сертификат</h2>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <form>
+                        <div>
+                            <div>
+                                <h4>Выберите дизайн сертификата</h4>
+                                <div class="bxslider">
+                                    <div><img src="/assets/bilet/template/img/gift_1.jpg" alt></div>
+                                    <div><img src="/assets/bilet/template/img/gift_2.jpg" alt></div>
+                                    <div><img src="/assets/bilet/template/img/gift_3.jpg" alt></div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4>Выберите сумму подарка</h4>
+                                <div class="ToggleGroup Section--Create__Prices js-btn-toggle-block">
+                                    <div data-price="1000" class="Btn Btn--Toggle">
+                                        <div class="Btn--Toggle__Label"><span class="Btn--Toggle__Label__Text"><span class="Btn--Toggle__Label__Text__Inner money-formatted numbers js-nominal">1&nbsp;000&nbsp;₽</span></span>
+                                        </div>
+                                    </div>
+                                    <div data-price="5000" class="Btn Btn--Toggle">
+                                        <div class="Btn--Toggle__Label"><span class="Btn--Toggle__Label__Text"><span class="Btn--Toggle__Label__Text__Inner money-formatted numbers js-nominal">5&nbsp;000&nbsp;₽</span></span>
+                                        </div>
+                                    </div>
+                                    <div data-price="10000" class="Btn Btn--Toggle isActive">
+                                        <div class="Btn--Toggle__Label"><span class="Btn--Toggle__Label__Text"><span class="Btn--Toggle__Label__Text__Inner money-formatted numbers js-nominal">10&nbsp;000&nbsp;₽</span></span>
+                                        </div>
+                                    </div>
+                                    <div data-price="0" class="Btn Btn--Toggle Btn--Toggle--hasInput" id="custom-gift-nominal" data-optional-input="true">
+                                        <div class="Btn--Toggle__Label Btn--Toggle--Optional__Label">
+                                            <div class="Btn--Toggle__Label__Text Btn--Toggle--Optional__Label__Text">
+                                                <span class="Btn--Toggle__Label__Text__Inner Btn--Toggle--Optional__Label__Text__Inner">Другая сумма</span>
+                                            </div>
+                                        </div>
+                                        <input name="price" class="Btn--Toggle__Input Btn--Toggle--hasInput__Input js-price-custom" placeholder="Введите сумму" autocomplete="off" type="text">
+                                        <div class="Tooltip Btn--Toggle__Tooltip Btn--Toggle--Optional__Tooltip">
+                                            <div class="Tooltip__Container Btn--Toggle__Tooltip__Container">
+                                                <span class="Tooltip__Text Btn--Toggle__Tooltip__Text">
+                    <span class="Tooltip__Text__Inner">
+                        Укажите сумму от <span class="money-formatted numbers">1&nbsp;000&nbsp;₽
+                        </span> до <span class="money-formatted numbers">150&nbsp;000&nbsp;₽</span>
+                                                </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <h4>Напишите поздравление</h4>
+                                <div class="Section--Create__Step__Form">
+                                    <form>
+                                        <div class="Form__InputWrapper"><input class="Form__Input js-from" placeholder="От кого: (например, Иван)" name="from" type="text"></div>
+                                        <div class="Form__InputWrapper"><input class="Form__Input js-to" placeholder="Кому: (например, Екатерина)" name="to" type="text"></div>
+                                        <div class="Form__InputWrapper"><textarea class="Form__Input Form__Textarea js-textarea" name="congratulations" placeholder="Текст поздравления"></textarea>
+                                            <div class="Form__Textarea__Limit"><strong class="js-limit-left">0</strong>&nbsp;<span>из 200 символов</span></div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                            <div>
+                                <h4>Выберите способ доставки</h4>
+                                <div class="Section--Create__Step">
+                                    <div class="Section--Create__Step__FormIcon">
+                                        <div class="Form__IconBlock js-icon-container"><svg class="Form__IconBlock__Icon Form__IconBlock__Icon--Mail"><use xlink:href="#svg-icon-mail"></use> </svg>
+                                            <div class="Form__IconBlock__Text">Ваш друг получит подарочный сертификат на указанную почту </div>
+                                        </div>
+                                    </div>
+                                    <div class="Section--Create__Step__Form">
+                                        <div class="Form__InputWrapper Form__InputWrapper--SelectWrapper"><select name="delivery-type" class="js-select Form__Input Form__Select Form__Select--Hidden"><option value="email">Доставить на email</option><option value="print">Я сам распечатаю и подарю</option></select>
+                                            <div class="Form__Input Form__Select__Input">Доставить на email</div>
+                                        </div>
+                                        <div class="Form__InputGroup js-input-group">
+                                            <div class="Form__InputWrapper"><input name="emailTo" class="Form__Input" placeholder="Email получателя подарка" type="email"> </div>
+                                            <div class="Form__InputWrapper"><input name="emailFrom" class="Form__Input" placeholder="Ваш email" value="" type="email"> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="slide no_padding">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-1">
+                    <label style="cursor:hand;cursor:pointer;" onclick="openbox('hd-1'); return false">Что такое подарочный сертификат?</label>
+                    <div id="hd-1" style="display: none; text-align: justify;">
+                        Сертификат БилетАвто — подарок, которому будет рад любой путешественник. С ним можно купить билеты на пригородные и междугородние автобусы из перечня маршрутов, представленного на сайте. Это универсальный подарок для родных, друзей, любимых, коллег, партнеров, начальства и подчиненных. Подарок на любой случай: Новый год, день рождения, свадьба, юбилей, в качестве вознаграждения сотрудников и многое другое. Вы можете приобрести сертификат на любую сумму от 1000 до 150 000 рублей. Вы сами решаете, какую сумму на путешествия подарить!
+                    </div><br/>
+                    <label style="cursor:hand;cursor:pointer;" onclick="openbox('hd-2'); return false">Как использовать сертификат?</label>
+                    <div id="hd-2" style="display: none; text-align: justify;">
+                        <ol>
+                            <li>Зайдите на <a href="/" target="_blank">БилетАвто</a></li>
+                            <li>Выберите необходимый маршрут и перейдите к оформлению билета</li>
+                            <li>При оплате заказа укажите промокод в поле для ввода промокода</li>
+                            <li>Оформите заказ</li>
+                            <li>Остаток суммы зачисляется на накопительный счет для оплаты будущих путешествий</li>
+                        </ol>
+                        Если номинал сертификата меньше стоимости заказа, владелец может доплатить недостающую сумму. Если номинал сертификата больше стоимости заказа, то остаток не сгорает, а отправляется на накопительный счет в личный кабинет для будущих путешествий.
+                    </div><br/>
+                    <label style="cursor:hand;cursor:pointer;" onclick="openbox('hd-3'); return false">Кто может воспользоваться?</label>
+                    <div id="hd-3" style="display: none; text-align: justify;">
+                        Владелец сертификата может воспользоваться им самостоятельно или передать право пользования другому лицу.
+                    </div><br/>
+                    <label style="cursor:hand;cursor:pointer;" onclick="openbox('hd-4'); return false">Срок действия</label>
+                    <div id="hd-4" style="display: none; text-align: justify;">
+                        Срок действия подарочного сертификата 12 месяцев со дня покупки. Если получатель в течение 1 года не воспользовался подарочным сертификатом, сертификат становится недействительным. При этом сумма, которую потратил даритель, сгорает.
+                    </div><br/>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br><br>
+    <footer>
+        <style>
+            .ico-pay {
+                padding-left: 15px;
+            }
+
+            .ico-div {
+                display: flex;
+                background: #f6f5f3;
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: center;
+
+            }
+
+            .countries {
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+                justify-content: space-between;
+            }
+
+            .refLink {
+                color: #fff;
+            }
+        </style>
+        <div class="center">
+            <div class="countries">
+                <div class="refLink"><a class="refLink" href="https://biletavto.ru/country/">Страны:</a></div>
+                <div class="refLink"><a class="refLink" href="https://biletavto.ru/country/?country=russia">Россия</a></div>
+                <div class="refLink"><a class="refLink" href="https://biletavto.ru/country/?country=ukraine">Украина</a></div>
+                <div class="refLink"><a class="refLink" href="https://biletavto.ru/country/?country=belarus">Беларусь</a></div>
+                <div class="refLink"><a class="refLink" href="https://biletavto.ru/country/?country=poland">Польша</a></div>
+                <div class="refLink"><a class="refLink" href="https://biletavto.ru/country/?country=latvia">Латвия</a></div>
+                <div class="refLink"><a class="refLink" href="https://biletavto.ru/country/?country=lithuania">Литва</a></div>
+                <div class="refLink"><a class="refLink" href="https://biletavto.ru/country/?country=armenia">Армения</a></div>
+                <div class="refLink"><a class="refLink" href="https://biletavto.ru/country/?country=georgia">Грузия</a></div>
+            </div>
+            <br><br>
+            <div class="copyright">
+                <a style="color: #fff; margin: 0 15px 0 0;" href="https://biletavto.ru/">Главная</a>
+                <a style="color: #fff; margin: 0 15px;" href="https://biletavto.ru/schedule/">Расписание</a>
+                <a style="color: #fff; margin: 0 15px;" href="https://biletavto.ru/soglashenie-publichnoj-ofertyi/">Договор оферты</a>
+                <a style="color: #fff; margin: 0 15px;" href="https://biletavto.ru/contacts/">Контакты</a>
+                <a style="color: #fff; margin: 0 15px;" href="https://biletavto.ru/faq/">Вопросы/Ответы</a>
+                <a style="color: #fff; margin: 0 15px;" href="https://biletavto.ru/vozvrat-bileta-na-avtobus/">Возврат билета</a>
+                <a style="color: #fff; margin: 0 15px;" href="https://biletavto.ru/raspisanie-marshrutok/">Расписание маршруток</a>
+                <a style="color: #fff; margin: 0 15px;" href="https://biletavto.ru/raspisanie-prigorodnyx-marshrutov/">Расписание пригородных маршрутов</a>
+                <a style="color: #fff; margin: 0 15px;" href="https://biletavto.ru/policy/">Политика конфиденциальности</a>
+                <a style="color: #fff; margin: 0 15px;" href="https://biletavto.ru/agents/">Агентам</a>
+                <a style="color: #fff; margin: 0 15px;" href="https://biletavto.ru/insurance/">Поиск полисов</a>
+                <br><br>
+                <p style="margin: 10px 0 0 0;">E-mail: info@biletavto.ru</p>
+                <!--<p>Телефон: 8 (800) 200-44-01 (с 4ч. до 16ч., ежедневно по Московскому времени) </p>-->
+
+
+                <!-- А вот тут магия флексбокса -->
+                <div style="display: flex;">
+                    <div>
+                        <div style="height: 30px;">На нашем сайте доступны самые популярные способы оплаты:</div>
+                        <div class="ico-div" style="padding-top: 5px;padding-bottom: 5px;">
+                            <div><img src="/assets/bilet/images/ico/pay/visa.svg" alt="Visa" class="ico-pay"></div>
+                            <div><img src="/assets/bilet/images/ico/pay/mastercard.svg" alt="Mastercard" class="ico-pay"></div>
+                            <div><img src="/assets/bilet/images/ico/pay/maestro.svg" alt="Maestro" class="ico-pay"></div>
+                            <!--<div><img src="/assets/bilet/images/ico/pay/y.wallet.svg" alt="Яндекс Кошелек" class="ico-pay"></div>-->
+                            <div><img src="/assets/bilet/images/ico/pay/webmoney.svg" alt="Webmoney" class="ico-pay"></div>
+                            <div><img src="/assets/bilet/images/ico/pay/qiwi.svg" alt="Qiwi" class="ico-pay"></div>
+                            <!--<div><img src="/assets/bilet/images/ico/pay/sberbank.png" alt="Сбербанк" class="ico-pay"></div>-->
+                            <div><img src="/assets/bilet/images/ico/pay/alfa.svg" alt="Альфа-Клик" class="ico-pay"></div>
+                            <div><img src="/assets/bilet/images/ico/pay/masterpass.svg" alt="Мasterpass" class="ico-pay"></div>
+                            <div><img src="/assets/bilet/images/ico/pay/psb.svg" alt="Промсвязьбанк" class="ico-pay"></div>
+                            <div><img src="/assets/bilet/images/ico/pay/kuppiru.svg" alt="Куппи.ру" class="ico-pay"></div>
+                        </div>
+                    </div>
+
+                    <div style="width: 577px; text-align: right">
+                        <div style="height: 30px;">Безопасность оплаты на сайте обеспечивают наши партнёры:</div>
+                        <div class="ico-div">
+                            <div><img src="/assets/bilet/images/ico/pay/yandex-dengi.png" width="100px" alt="Яндекс Кошелек" class="ico-pay"></div>
+                            <div><img src="/assets/bilet/images/ico/pay/sber_fulli.png" width="100px" alt="Сбербанк" class="ico-pay"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                <div class="soc" style="position: relative; top: 10px; float: left;">
+                    <t style="
+                float: left;
+                padding-right: 25px;
+                padding-top: 10px;
+            ">Присоединяйтесь к нам в социальных сетях: </t>
+                    <a class="vk" href="https://vk.com/biletavto" rel="nofollow" target="_blank"></a>
+                    <a class="ok" href="https://ok.ru/biletavto" rel="nofollow" target="_blank"></a>
+                    <a class="is" href="https://www.instagram.com/biletavto/" rel="nofollow" target="_blank"></a>
+                    <a class="fb" href="https://www.facebook.com/biletavto" rel="nofollow" target="_blank"></a>
+                    <a class="tg" href="http://telegram.me/biletavtobot" rel="nofollow" target="_blank"></a>
+
+                    <!--<a href="http://www.instagram.com/biletavto/" target="_blank"></a>-->
+                </div>
+                <br><br>
+                <span style="float: right; ">БилетАвто</span><br>
+                <span style="float: right;">ООО «Антариз»</span>
+
+
+
+
+                <span style="float: right;">ОГРН 1130327002960 </span><br>
+                <span style="float: right;">ИНН/КПП	0326511681 / 032601001</span>
+                <span style="margin-right: 15px;">biletavto.ru © 2014-2018</span><br>
+                <span style="margin: 20px 0; font-size: 10px;">Сайт заказа билетов на автобус. Все права защищены.</span>
+                <span style="float: right;">Адрес для почтовых отправлений: 670002, г. Улан-Удэ, ул. Буйко 20а, офис 3</span><br>
+                <span style="float: right;">Телефон: 8 (800) 200-44-01 (с 4ч. до 16ч., ежедневно по Московскому времени)</span><br>
+                <span style="float: right;">107207, г. Москва, Щёлковское ш., 75</span>
+
+
+
+            </div>
+        </div>
+    </footer>
+
+    <div class="mobile">
+        <div class="footer">
+            <div class="links">
+                <a href="https://biletavto.ru/">Главная</a> &middot;
+                <a href="https://biletavto.ru/schedule/">Расписание</a> &middot;
+                <a href="https://biletavto.ru/soglashenie-publichnoj-ofertyi/">Договор оферты</a>
+            </div>
+
+
+
+            <div class="copyright">
+                <span style="margin-right: 15px;">biletavto.ru © 2014-2018</span>
+                <span style="margin-right: 15px;">ООО «Антариз»</span>
+                <span style="float: right;">г. Улан-Удэ, ул. Буйко 20а, офис 3</span>
+                <span style="margin-right: 15px;">ОГРН 1130327002960  ИНН/КПП	0326511681 / 032601001</span>
+                <p style="margin: 20px 0; font-size: 10px;">Сайт заказа билетов на автобус. Все права защищены. </p>
+
+                <!--
+    Query Time: 0,0099 s
+    Request: 71
+    PHP Exec: 0,0000 s
+    Total time: 0,2291 s 
+-->
+            </div>
+        </div>
+    </div>
+
+    <!-- BEGIN JIVOSITE CODE {literal} -->
+    <script type='text/javascript'>
+        (function() {
+            var widget_id = '7GLidp3p4E';
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = '//code.jivosite.com/script/widget/' + widget_id;
+            var ss = document.getElementsByTagName('script')[0];
+            ss.parentNode.insertBefore(s, ss);
+        })();
+    </script>
+    <!-- {/literal} END JIVOSITE CODE -->
+
+    <!-- google -->
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-64602549-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <!-- end google -->
+
+    <!--vk таргентинг-->
+    <script type="text/javascript">
+        (window.Image ? (new Image()) : document.createElement('img')).src = 'https://vk.com/rtrg?p=VK-RTRG-139481-4xGsf';
+    </script>
+    <!-- end vk таргентинг-->
+
+
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter31156756 = new Ya.Metrika({
+                        id: 31156756,
+                        clickmap: true,
+                        trackLinks: true,
+                        accurateTrackBounce: true,
+                        webvisor: true
+                    });
+                } catch (e) {}
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function() {
+                    n.parentNode.insertBefore(s, n);
+                };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else {
+                f();
+            }
+        })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/31156756" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    <noindex>
+        <script async src="https://stats.lptracker.ru/code/new/44316"></script>
+    </noindex>
+    <!-- LPTracker counter -->
+
+    <script type="text/javascript">
+        function tH(el) {
+            var p = el.parentNode,
+                next = p.nextSibling;
+            while (next.nodeType != 1) next = next.nextSibling;
+            next.style.left = p.offsetLeft + 'px';
+            next.style.top = p.offsetTop + 'px';
+            for (var i = 0; i < 6; i++) document.getElementById('h' + i).style.display = 'none';
+            next.style.display = 'block';
+        }
+
+        function hH(el, ev) {
+            if (ev.stopPropagation) ev.stopPropagation();
+            else ev.cancelBubble = true;
+            var target = ev.relatedTarget || ev.srcElement,
+                cssClass = target.getAttribute('class');
+            if ((!cssClass && el.tagName.toLowerCase != 'div') || cssClass.indexOf('rwh-') == -1) {
+                el.style.display = 'none';
+            }
+        }
+    </script>
+    <!-- end yandex.metrika   -->
+
+    <script type="text/javascript">
+        function openbox(id) {
+            var display = document.getElementById(id).style.display;
+            if (display == 'none') {
+                document.getElementById(id).style.display = 'block';
+            } else {
+                document.getElementById(id).style.display = 'none';
+            }
+        }
+
+        $(function() {
+            $('.bxslider').bxSlider({
+                mode: 'fade',
+                captions: true,
+                slideHeight: 450
+            });
+        });
+    </script>
+
+    <script src="/assets/bilet/js/jquery.cookie.1.3.1.js"></script>
+    <script src="/assets/bilet/js/jquery.scrollTo.min.js"></script>
+    <script src="/assets/bilet/js/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/bilet/js/jquery.fancybox.js" type="text/javascript"></script>
+    <script src="/assets/bilet/js/jquery-ui.min.js"></script>
+    <script src="/assets/bilet/js/jquery.mousewheel.js"></script>
+    <script src="/assets/bilet/js/jquery.content-slider.js"></script>
+    <script src="/assets/bilet/js/jquery.formstyler.min.js"></script>
+    <script src="/assets/bilet/js/jqueryscrollslider.js"></script>
+    <script src="/assets/bilet/js/jquery.nouislider.all.min.js"></script>
+    <script src="/assets/bilet/js/jquery.tools.min.js"></script>
+    <script src="/assets/bilet/js/jquery.clickout.js"></script>
+    <script src="/assets/bilet/js/jquery.plugin.min.js"></script>
+    <script src="/assets/bilet/js/jquery.datepick.min.js"></script>
+    <script src="/assets/bilet/partners/js/bootstrap.min.js"></script>
+
+    <script src="/assets/bilet/js/script.min.js?3"></script>
+    <script src="/assets/bilet/js/script_new.min.js?1"></script>
+    <script src="/assets/bilet/js/common.js?4"></script>
+
+    <script src="/assets/bilet/js/jquery.validate-1.11.1.min.js"></script>
+    <script src="/assets/bilet/js/jquery.validate.unobtrusive-5.min.js"></script>
+    <script src="/assets/bilet/js/custom-methods.js"></script>
+    <script src="/assets/bilet/js/messages_ru.js"></script>
+    <script src="/assets/bilet/js/validator.defaults.site.js"></script>
+
+    <script src="/assets/bilet/js/jquery.maskedinput.1.3.1.min.js"></script>
+    <script src="/assets/bilet/js/jquery.form.min.js"></script>
+
+    <script src="/assets/bilet/js/Base64.js"></script>
+
+    <script type="text/javascript">
+        function windowSize() {
+            if ($(window).width() <= '768') {
+                $('#width_frame').val(250);
+                $('#a_frame').width(250);
+            }
+        }
+        $(window).load(windowSize); // при загрузке
+
+        jQuery(document).ready(function() {
+            $('body').on('change', '#agree', function() {
+                if (this.checked) {
+                    $('#submit').removeAttr('disabled');
+                    $('#submit').css('background-color', '#efb810');
+                } else {
+                    $('#submit').attr('disabled', 'disabled');
+                    $('#submit').css('background-color', '');
+                }
+            });
+        });
+
+        jQuery(document).ready(function() {
+            $('body').on('change', '#width_frame', function() {
+                var a = $('#width_frame').val();
+                if (a > 620) {
+                    $('#div_width').addClass("has-error");
+                    $('#inputError').removeAttr('hidden');
+                } else {
+                    $('#div_width').removeClass("has-error");
+                    $('#inputError').attr('hidden', 'hidden');
+                    $('#a_frame').width(a);
+                    $('#form_width_frame').val($('iframe').width());
+                }
+            });
+        });
+
+        $('#colorsGroup').on('click', '.colorsGroupBullet', function() {
+            var $this = $(this);
+            $('.colorsGroupBullet').removeClass('active');
+            $this.addClass('active');
+            var children = $this.find('.colors-bullet-half');
+            $('#a_frame').css({
+                'background-color': children.eq(0).css('background-color')
+            });
+            $('#form_color_frame').val($('iframe').css('background-color'));
+        });
+    </script>
+
+</body>
+</html>
