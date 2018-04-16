@@ -4,82 +4,105 @@
 <head>
     <meta charset="UTF-8">
     <title>I Learn Vue.js</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<body>
-    <div class="container">
-        <div class="jumbotron mt-3">
-            <div class="form-signin">
-                <!-- Вьюха приложения -->
-                <div id="todo-list-example">
-                    <fieldset class="form-group">
-                        <div class="todo-input">
-                            <label for="name">Заметка</label>
-                            <input type="text" placeholder="Название" class="form-control" id="name" v-model="newTodoTitle" required>
-                            <label for="note">Примечание</label>
-                            <input type="text" placeholder="Примечание" class="form-control" id="note" v-model="newTodoNote" v-on:keyup.enter="addNewTodo"
-                                required>
-                        </div>
-                        <div class="todo-btn">
-                            <button class="btn btn-success btn-block" v-on:click="addNewTodo">
-                                <label>Добавить</label>
-                            </button>
-                        </div>
-                    </fieldset>
-                    <div class="todo-items">
-                        <div is="todo-item" v-for="(todo, index) in todos" v-bind:index="todo.id" v-bind:title="todo.title" v-bind:note="todo.note"
-                            v-bind:isedit="todo.isedit" v-on:remove="todos.splice(index, 1)" v-on:show="show" v-on:hide="hide">
-                            <!-- Место, куда вставятся все -->
-                        </div>
-                        <!-- https://ru.vuejs.org/v2/guide/list.html#%D0%97%D0%B0%D0%BC%D0%B5%D0%BD%D1%8B-%D0%B2-%D0%BC%D0%B0%D1%81%D1%81%D0%B8%D0%B2%D0%B5 
-                        https://tehnojam.pro/category/development/sozdanie-spiska-zadach-s-vue_js.html
-                        https://ru.vuejs.org/v2/guide/computed.html -->
-                    </div>
-                </div>
-                <!-- Конец вьюхи -->
+<body>    
+    <link href="chat.css" rel="stylesheet">
+    <div class="ocWidget__chat" style="left: 271px; top: 20px; position: fixed;">
+        <div class="ocWidget__chat__top-wrapper">
+            <!-- FRAME TOP -->
+            <div class="ocWidget__chat__top">
+                <div class="ocWidget__chat__top-allHeading ocWidget-heading">БилетАвто</div>
+                <div class="ocWidget__chat__top-msgHeading ocWidget-description">веб-чат с компанией</div>
+                <div class="ocWidget__chat__top-icoX" data-onclick="ocWidget.chat.hide()"></div>
             </div>
         </div>
-    </div>
-
-    <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">ИМИ БГУ</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Главная </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Ссылки</a>
-                </li>
-                <li class="nav-item dropup">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Другие лабы</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown10">
-                        <a class="dropdown-item" href="#">Лаба 1</a>
-                        <a class="dropdown-item" href="#">Лаба 2</a>
-                        <a class="dropdown-item" href="#">Лаба 3</a>
+        <div class="ocWidget__chat__mid-wrapper">
+            <!-- FRAME MIDDLE -->
+            <div class="ocWidget__chat__mid" style="">
+                <!-- ИНТЕРФЕЙС ЗАГРУЗКИ -->
+                <div class="ocWidget_loading-block">
+                    <div class="ocWidget_loading-sphere"></div>
+                </div>
+                <!-- ИНТЕРФЕЙС ЧАТА -->
+                <div class="ocWidget__chat__mid__msg" data-onscroll="ocWidget.chat.msg.pagination.scroll(event)">
+                    <div id="hAsBYLZqJ5" class="ocWidget__message-sent ocAnimation-fadeIn">
+                        <!-- ИНТЕРФЕЙС ИСХОДЯЩЕГО СООБЩЕНИЯ -->
+                        <div class="ocWidget__chat__mid__msg__sentMessage" data-onclick="ocWidget.chat.msg.message.retry(event, el)">
+                            <div class="ocWidget__chat__mid__msg__sentMessage__message">
+                                <div class="ocWidget__chat__mid__msg__sentMessage__message-text ocWidget-text">тест</div>
+                                <div class="ocWidget__chat__mid__msg__sentMessage__message-date ocWidget-description">Вы 16 апреля в 10:04</div>
+                                <div class="ocWidget__chat__mid__msg__sentMessage__message-loading">
+                                    <div class="ocWidget_spinner"> <span class="ocWidget__chat__mid__msg__sentMessage__message-loading--loading ocWidget-description">Отправка</span>
+                                        <div class="ocWidget_bounce1"></div>
+                                        <div class="ocWidget_bounce2"></div>
+                                        <div class="ocWidget_bounce3"></div>
+                                    </div>
+                                </div>
+                                <div class="ocWidget__chat__mid__msg__sentMessage__message--deliver"> <span class="ocWidget__chat__mid__msg__sentMessage__message--deliver-not ocWidget-description">сообщение не доставлено</span> <span class="ocWidget__chat__mid__msg__sentMessage__message--deliver-refresh ocWidget-description">повторить</span> </div>
+                            </div>
+                        </div>
                     </div>
-                </li>
-            </ul>
+                    <div class="ocWidget__operator ocAnimation-fadeIn">
+                        <!-- ИНТЕРФЕЙС ОПЕРАТОРА -->
+                        <div class="ocWidget__chat__mid__msg__operator">
+                            <div class="ocWidget__chat__mid__msg__operator-photo"> <img draggable="false" src="https://rtc-web-nd3.rostelecom-cc.ru/fileStorage/files/thumb/eb13fea48dddbf11544bc73a9511af05.png" alt=""> </div>
+                            <div class="ocWidget__chat__mid__msg__operator-name ocWidget-text">Марианна</div>
+                            <!-- <div class="ocWidget__chat__mid__msg__operator-name ocWidget-text"></div> --></div>
+                    </div>
+                    <div class="ocWidget__message-received ocAnimation-fadeIn ocWidget-message-group">
+                        <!-- ИНТЕРФЕЙС ВХОДЯЩЕГО СООБЩЕНИЯ -->
+                        <div class="ocWidget__chat__mid__msg__receivedMessage">
+                            <div class="ocWidget__chat__mid__msg__receivedMessage__message">
+                                <div class="ocWidget__chat__mid__msg__receivedMessage__message-text ocWidget-text">Добро пожаловать! В течение нескольких минут вам ответит наш специалист.</div>
+                                <div class="ocWidget__chat__mid__msg__receivedMessage__message-date ocWidget-description">Марианна 16 апреля в 10:04</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ocWidget__message-received ocAnimation-fadeIn">
+                        <!-- ИНТЕРФЕЙС ВХОДЯЩЕГО СООБЩЕНИЯ -->
+                        <div class="ocWidget__chat__mid__msg__receivedMessage">
+                            <div class="ocWidget__chat__mid__msg__receivedMessage__message">
+                                <div class="ocWidget__chat__mid__msg__receivedMessage__message-text ocWidget-text">Здравствуйте! Меня зовут Марианна, чем я могу Вам помочь?</div>
+                                <div class="ocWidget__chat__mid__msg__receivedMessage__message-date ocWidget-description">Марианна 16 апреля в 10:05</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </nav>
+        <div class="ocWidget__chat__bot-wrapper">
+            <!-- CHAT BOTTOM START -->
+            <div class="ocWidget__chat__bot">
+                <!-- CHAT -->
+                <div class="ocWidget__chat__bot__msg" style="height: 78px;">
+                    <!-- TEXTAREA MSG -->
+                    <textarea placeholder="Введите текст сообщения" 
+                              class="ocWidget__chat__bot__msg-textarea" 
+                              style="height: 33px;"></textarea>
+                    <div class="ocWidget__chat__bot__msg-send ocWidget-btnBg" data-onclick="ocWidget.chat.msg.message.send()">Отправить</div>
+                </div>
+                <!-- CSI -->
+                <div class="ocWidget__chat__bot__csi">
+                    <div class="ocWidget__chat__bot__csi-send ocWidget-btnBg">Отправить</div>
+                </div>
+            </div>
+            <!-- CHAT BOTTOM END -->
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script>
         Vue.component('todo-item', {
             props: ['index', 'title', 'note', 'isedit'],
             methods: {
-                showForm: function (index) {
+                showForm: function(index) {
                     //alert('Во внутреннюю функцию зашёл, индекс: ' + index);
                     this.$emit('show', index);
                 },
-                hideForm: function (index, title, note) {
+                hideForm: function(index, title, note) {
                     this.$emit('hide', index, title, note);
                 }
             },
@@ -124,7 +147,7 @@
                 nextTodoId: 1
             },
             methods: {
-                addNewTodo: function () {
+                addNewTodo: function() {
                     if (this.newTodoTitle != '' && this.newTodoNote != '') {
                         this.todos.push({
                             id: this.nextTodoId++,
@@ -139,7 +162,7 @@
                         alert('Пожалуйста, заполните поля');
                     }
                 },
-                show: function (index) {
+                show: function(index) {
                     //this.todos[index].isedit = true;
                     for (let key in this.todos) {
                         //console.log(this.todos[key]);
@@ -148,7 +171,7 @@
                         }
                     }
                 },
-                hide: function (index, title, note) {
+                hide: function(index, title, note) {
                     for (let key in this.todos) {
                         //console.log(this.todos[key]);
                         if (this.todos[key].id == index) {
