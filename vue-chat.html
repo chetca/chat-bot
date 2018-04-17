@@ -12,147 +12,164 @@
     <link href="chat.css" rel="stylesheet">
 
     <div class="BA_chat" style="left: 970px; top: 20px; position: fixed;">
-        <div class="BA_chat_top-wrapper">
-            <!-- FRAME TOP -->
-            <div class="BA_chat_top">
-                <div class="BA_chat_top-allHeading BA-heading">БилетАвто</div>
-                <div class="BA_chat_top-msgHeading BA-description">веб-чат с компанией</div>
-                <div class="BA_chat_top-icoX" data-onclick="BA.chat.hide()"></div>
+        <div id="BA_chat_brain">
+            <div class="BA_chat_top-wrapper">
+                <!-- FRAME TOP -->
+                <div class="BA_chat_top">
+                    <div class="BA_chat_top-allHeading BA-heading">БилетАвто</div>
+                    <div class="BA_chat_top-msgHeading BA-description">веб-чат с компанией</div>
+                    <div class="BA_chat_top-icoX" data-onclick="BA.chat.hide()"></div>
+                </div>
             </div>
-        </div>
-        <div class="BA_chat_mid-wrapper">
-            <!-- FRAME MIDDLE -->
-            <div class="BA_chat_mid" style="">
-                <!-- ИНТЕРФЕЙС ЧАТА -->
-                <div class="BA_chat_mid_msg">
-                    <div class="BA_message-sent ocAnimation-fadeIn">
-                        <!-- ИНТЕРФЕЙС ИСХОДЯЩЕГО СООБЩЕНИЯ -->
-                        <div class="BA_chat_mid_msg_sentMessage">
-                            <div class="BA_chat_mid_msg_sentMessage_message">
-                                <div class="BA_chat_mid_msg_sentMessage_message-text BA-text">тест</div>
-                                <div class="BA_chat_mid_msg_sentMessage_message-date BA-description">Вы 16 апреля в 14:04</div>
+            <div class="BA_chat_mid-wrapper">
+                <!-- FRAME MIDDLE -->
+                <div class="BA_chat_mid" style="">
+                    <!-- ИНТЕРФЕЙС ЧАТА -->
+                    <div class="BA_chat_mid_msg">
+                        <div class="BA_message-received ocAnimation-fadeIn BA-message-group">
+                            <!-- ИНТЕРФЕЙС ВХОДЯЩЕГО СООБЩЕНИЯ -->
+                            <div class="BA_chat_mid_msg_receivedMessage">
+                                <div class="BA_chat_mid_msg_receivedMessage_message">
+                                    <div class="BA_chat_mid_msg_receivedMessage_message-text BA-text">
+                                        Я — бот БилетАвто. Спасибо, что написали!<br>
+                                        Пожалуйста, выберите команду по интересующей Вас теме:<br>
+                                        1 – Вас интересует расписание?<br>
+                                        2 – Стоимость проезда<br>
+                                        3 – Телефон автостанции<br>
+                                        4 – Хотите забронировать билет<br>
+                                        5 – Покупка билета<br>
+                                        6 – Что делать, если по выбранному билету нет данных о расписании<br>
+                                        7 – Возврат билета<br>
+                                        8 - Замена билета<br>
+                                        9 – Проблемы технического характера, прочие вопросы</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="BA_message-received ocAnimation-fadeIn BA-message-group">
-                        <!-- ИНТЕРФЕЙС ВХОДЯЩЕГО СООБЩЕНИЯ -->
-                        <div class="BA_chat_mid_msg_receivedMessage">
-                            <div class="BA_chat_mid_msg_receivedMessage_message">
-                                <div class="BA_chat_mid_msg_receivedMessage_message-text BA-text">Добро пожаловать! В течение нескольких минут вам ответит наш специалист.</div>
-                                <div class="BA_chat_mid_msg_receivedMessage_message-date BA-description">Марианна 16 апреля в 14:04</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="BA_message-received ocAnimation-fadeIn">
-                        <!-- ИНТЕРФЕЙС ВХОДЯЩЕГО СООБЩЕНИЯ -->
-                        <div class="BA_chat_mid_msg_receivedMessage">
-                            <div class="BA_chat_mid_msg_receivedMessage_message">
-                                <div class="BA_chat_mid_msg_receivedMessage_message-text BA-text">Здравствуйте! Меня зовут Марианна, чем я могу Вам помочь?</div>
-                                <div class="BA_chat_mid_msg_receivedMessage_message-date BA-description">Марианна 16 апреля в 14:05</div>
-                            </div>
-                        </div>
+                        <div is='message-item' 
+                             v-for="(message, index) in messages" :key="message.id"
+                             v-bind:clientmessage='message.client'
+                             v-bind:chatmessage='message.chat'
+                        ></div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="BA_chat_bot-wrapper">
-            <!-- Форма ввода сообщения -->
-            <div class="BA_chat_bot">
-                <textarea placeholder="Введите текст сообщения" class="BA_chat_bot_msg-textarea" style="height: 33px;"></textarea>
-                <div class="BA_btnBg BA_chat_bot_msg-send" data-onclick="BA.chat.msg.message.send()">Отправить</div>
+            <div class="BA_chat_bot-wrapper">
+                <!-- Форма ввода сообщения -->
+                <div class="BA_chat_bot">
+                    <input type="number" min="1" max="10" placeholder="Введите номер команды" class="BA_chat_bot_msg-textarea" style="height: 33px;" v-model="clientMessage" v-on:keyup.enter="sendMessage">
+                    <div class="BA_btnBg BA_chat_bot_msg-send" v-on:click="sendMessage">Отправить</div>
+                </div>
+                <!-- Конец формы ввода -->
             </div>
-            <!-- Конец формы ввода -->
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/marked@0.3.6"></script>
+    <script src="https://unpkg.com/lodash@4.16.0"></script>
     <script>
-        Vue.component('todo-item', {
-            props: ['index', 'title', 'note', 'isedit'],
-            methods: {
-                showForm: function(index) {
-                    //alert('Во внутреннюю функцию зашёл, индекс: ' + index);
-                    this.$emit('show', index);
-                },
-                hideForm: function(index, title, note) {
-                    this.$emit('hide', index, title, note);
-                }
-            },
-            template: ' \
-            <div class="todo-item-elem">\
-                <div class="content" v-show="!isedit">\
-                    <h4 class="zero-margin">{{ title }}</h4>\
-                    <small class="text-muted">{{ note }}</small>\
-                    <div class="text-right">\
-                        <i class="fa fa-pencil-square-o cur_btn" aria-hidden="true" v-on:click="showForm(index)"></i>\
-                        <i class="fa fa-trash cur_btn" aria-hidden="true" v-on:click="$emit(\'remove\')"></i>\
-                    </div>\
-                </div>\
-                <div class="content" v-show="isedit">\
-                    <div class="ui form">\
-                        <div class="field">\
-                            <label>Заметка</label>\
-                            <input class="form-control" type="text" v-model="title">\
-                            <label>Примечание</label>\
-                            <input class="form-control" type="text" v-model="note">\
+        Vue.component('message-item', {
+            props: ['clientmessage', 'chatmessage', 'compiledMarkdown'],
+            template: '\
+                <div>\
+                    <div class="BA_message-sent ocAnimation-fadeIn">\
+                        <!-- ИНТЕРФЕЙС ИСХОДЯЩЕГО СООБЩЕНИЯ -->\
+                        <div class="BA_chat_mid_msg_sentMessage">\
+                            <div class="BA_chat_mid_msg_sentMessage_message">\
+                                <div class="BA_chat_mid_msg_sentMessage_message-text BA-text" v-html="compiledMarkdown">{{ clientmessage }}</div>\
+                            </div>\
                         </div>\
-                        <div class="todo-btn">\
-                            <button class="btn btn-danger btn-block" v-on:click="hideForm(index, title, note)"> \
-                                <label>Закрыть</label> \
-                            </button>\
+                    </div>\
+                    <div class="BA_message-received ocAnimation-fadeIn BA-message-group">\
+                        <!-- ИНТЕРФЕЙС ВХОДЯЩЕГО СООБЩЕНИЯ -->\
+                        <div class="BA_chat_mid_msg_receivedMessage">\
+                            <div class="BA_chat_mid_msg_receivedMessage_message">\
+                                <div class="BA_chat_mid_msg_receivedMessage_message-text BA-text" v-html="chatmessage">{{ chatmessage }}</div>\
+                            </div>\
                         </div>\
                     </div>\
                 </div>\
-            </div>',
+            '
         })
         new Vue({
-            el: '#todo-list-example',
+            el: '#BA_chat_brain',
+            computed: {
+                compiledMarkdown: function () {
+                    return marked(this.clientMessage, { sanitize: true })
+                }
+             },
             data: {
-                newTodoTitle: '',
-                newTodoNote: '',
-                todos: [{
-                    id: 0,
-                    title: 'Todo B',
-                    note: 'Project B',
-                    isedit: false
-                }],
-                nextTodoId: 1
+                clientMessage: '',
+                variations: [{
+                        id: 1,
+                        answer: 'Расписание движения автобусов можно посмотреть на сайте в разделе <a href="https://biletavto.ru/schedule/" target="_blank">Расписание</a>. Нужно указать пункт отправления автобуса и пункт прибытия, а также желаемую дату отправления<br> \
+                        После этого отобразится расписание автобусов по данному маршруту с указанием времени отправления, времени следования в пути, а также стоимости билета.'
+                    },
+                    {
+                        id: 2,
+                        answer: 'Для того, чтобы узнать стоимость проезда автобусов необходимо в разделе <a href="https://biletavto.ru/schedule/" target="_blank">Расписание</a> указать пункт отправления автобуса и пункт прибытия, а также желаемую дату отправления. \
+                        После этого отобразится стоимость билета, а также расписание автобусов по данному маршруту с указанием времени отправления и времени следования в пути.'
+                    },
+                    {
+                        id: 3,
+                        answer: 'Телефоны автовокзалов доступны по ссылке <a href="https://biletavto.ru/telefony-avtovokzalov/" target="_blank">Телефоны автовокзалов</a>\
+                        В строке поиска введите нужный город'
+                    },
+                    {
+                        id: 4,
+                        answer: 'К сожалению, забронировать билет на сайте невозможно, можно лишь приобрести его самостоятельно, нажав на желтую кнопку "Купить".'
+                    },
+                    {
+                        id: 5,
+                        answer: 'Подробная инструкции покупки билета доступна по ссылке https://biletavto.ru/faq#f0'
+                    },
+                    {
+                        id: 6,
+                        answer: 'К сожалению данный рейс к нашей системе не подключен, вы можете уточнить необходимую информацию, позвонив на автовокзал. Телефон вы можете посмотреть по ссылке <a href="https://biletavto.ru/telefony-avtovokzalov/" target="_blank">Телефоны автовокзалов</a>. В строке поиска введите нужный город'
+                    },
+                    {
+                        id: 7,
+                        answer: 'Для того, чтобы вернуть билет и получить его стоимость обратно необходимо в личном кабинете зайти в "Мои заказы". Далее. выбрав оплаченный рейс, нажать на кнопку "Возврат билета". Заполнив необходимые поля (номер вашей карты), нажать на кнопку "Отправить". Тем самым, автоматически сформируется заявление на возврат. \
+                        Сумма возврата зависит от условий Перевозчика, а также от времени, которое осталось до поездки. Чем раньше Вы оформили возврат, тем большую сумму вернете. Билет можно вернуть только до отправления автобуса, после отправления автобуса билет возврату не подлежит. Подробнее<a href="https://biletavto.ru/faq#f7" target="_blank">тут</a>'
+                    },
+                    {
+                        id: 8,
+                        answer: 'К сожалению, обменять билет (на другую дату или время/место) на сайте невозможно, можно лишь оформить возврат и приобрести новый. Для того, чтобы оформить возврат билета необходимо в личном кабинете зайти в "Мои заказы". Далее. выбрав оплаченный рейс, нажать на кнопку "Возврат билета"'
+                    },
+                    {
+                        id: 9,
+                        answer: 'Если у вас проблема с оплатой, не пришёл эл. билет на почту либо другая техническая ошибка – обратитесь на почту тех. поддержки сайта <a href="mailto: info@biletavto.ru">info@biletavto.ru</a>'
+                    }
+                ],
+                messages: [{
+                    client: 'debug',
+                    chat: 'debug'
+                }]
             },
             methods: {
-                addNewTodo: function() {
-                    if (this.newTodoTitle != '' && this.newTodoNote != '') {
-                        this.todos.push({
-                            id: this.nextTodoId++,
-                            title: this.newTodoTitle,
-                            note: this.newTodoNote,
-                            isedit: false
+                sendMessage: function () {
+                    for (var key in this.variations) {
+                        if(this.variations[key].id == this.clientMessage) {
+                            var saveKey = key;
+                        }
+                    }
+                    if(saveKey) {
+                        this.messages.push({
+                            client: this.clientMessage,
+                            chat: this.variations[saveKey].answer
                         })
-                        this.newTodoTitle = '';
-                        this.newTodoNote = '';
-                        //alert(this.todos[this.nextTodoId-1].isedit);
-                    } else {
-                        alert('Пожалуйста, заполните поля');
                     }
+                    else {
+                        this.messages.push({
+                            client: this.clientMessage,
+                            chat: 'syntax error'
+                        })
+                    }
+                    this.clientMessage = ''
                 },
-                show: function(index) {
-                    //this.todos[index].isedit = true;
-                    for (let key in this.todos) {
-                        //console.log(this.todos[key]);
-                        if (this.todos[key].id == index) {
-                            this.todos[key].isedit = true;
-                        }
-                    }
-                },
-                hide: function(index, title, note) {
-                    for (let key in this.todos) {
-                        //console.log(this.todos[key]);
-                        if (this.todos[key].id == index) {
-                            this.todos[key].isedit = false;
-                            this.todos[key].title = title;
-                            this.todos[key].note = note;
-                        }
-                    }
-                }
+                update: _.debounce(function (e) {
+                    this.clientMessage = e.target.value
+                    }, 300)
             }
         })
 
