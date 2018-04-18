@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>I Learn Vue.js</title>
+    <title>Чат БилетАвто</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -23,33 +23,19 @@
             </div>
             <div class="BA_chat_mid-wrapper">
                 <!-- FRAME MIDDLE -->
-                <div class="BA_chat_mid" style="">
+                <div class="BA_chat_mid">
                     <!-- ИНТЕРФЕЙС ЧАТА -->
-                    <div class="BA_chat_mid_msg">
+                    <div class="BA_chat_mid_msg" id="block">
                         <div class="BA_message-received ocAnimation-fadeIn BA-message-group">
                             <!-- ИНТЕРФЕЙС ВХОДЯЩЕГО СООБЩЕНИЯ -->
                             <div class="BA_chat_mid_msg_receivedMessage">
                                 <div class="BA_chat_mid_msg_receivedMessage_message">
                                     <div class="BA_chat_mid_msg_receivedMessage_message-text BA-text">
-                                        Я — бот БилетАвто. Спасибо, что написали!<br>
-                                        Пожалуйста, выберите команду по интересующей Вас теме:<br>
-                                        1 – Вас интересует расписание?<br>
-                                        2 – Стоимость проезда<br>
-                                        3 – Телефон автостанции<br>
-                                        4 – Хотите забронировать билет<br>
-                                        5 – Покупка билета<br>
-                                        6 – Что делать, если по выбранному билету нет данных о расписании<br>
-                                        7 – Возврат билета<br>
-                                        8 - Замена билета<br>
-                                        9 – Проблемы технического характера, прочие вопросы</div>
+                                        Я — бот БилетАвто. Спасибо, что написали!<br> Пожалуйста, выберите команду по интересующей Вас теме:<br> 1 – Вас интересует расписание?<br> 2 – Стоимость проезда<br> 3 – Телефон автостанции<br> 4 – Хотите забронировать билет<br> 5 – Покупка билета<br> 6 – Что делать, если по выбранному билету нет данных о расписании<br> 7 – Возврат билета<br> 8 - Замена билета<br> 9 – Проблемы технического характера, прочие вопросы</div>
                                 </div>
                             </div>
                         </div>
-                        <div is='message-item' 
-                             v-for="(message, index) in messages" :key="message.id"
-                             v-bind:clientmessage='message.client'
-                             v-bind:chatmessage='message.chat'
-                        ></div>
+                        <div is='message-item' v-for="(message, index) in messages" v-if="index != 0" :key="message.id" v-bind:clientmessage='message.client' v-bind:chatmessage='message.chat'></div>
                     </div>
                 </div>
             </div>
@@ -63,7 +49,15 @@
             </div>
         </div>
     </div>
-
+    
+    <script>
+        function scroll() { 
+            setTimeout(function() {
+                var block = document.getElementById("block");
+                block.scrollTop = block.scrollHeight + 9999;
+            }, 1000);
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://unpkg.com/marked@0.3.6"></script>
     <script src="https://unpkg.com/lodash@4.16.0"></script>
@@ -76,7 +70,7 @@
                         <!-- ИНТЕРФЕЙС ИСХОДЯЩЕГО СООБЩЕНИЯ -->\
                         <div class="BA_chat_mid_msg_sentMessage">\
                             <div class="BA_chat_mid_msg_sentMessage_message">\
-                                <div class="BA_chat_mid_msg_sentMessage_message-text BA-text" v-html="compiledMarkdown">{{ clientmessage }}</div>\
+                                <div class="BA_chat_mid_msg_sentMessage_message-text BA-text">{{ clientmessage }}</div>\
                             </div>\
                         </div>\
                     </div>\
@@ -94,10 +88,12 @@
         new Vue({
             el: '#BA_chat_brain',
             computed: {
-                compiledMarkdown: function () {
-                    return marked(this.clientMessage, { sanitize: true })
+                compiledMarkdown: function() {
+                    return marked(this.clientMessage, {
+                        sanitize: true
+                    })
                 }
-             },
+            },
             data: {
                 clientMessage: '',
                 variations: [{
@@ -130,7 +126,7 @@
                     {
                         id: 7,
                         answer: 'Для того, чтобы вернуть билет и получить его стоимость обратно необходимо в личном кабинете зайти в "Мои заказы". Далее. выбрав оплаченный рейс, нажать на кнопку "Возврат билета". Заполнив необходимые поля (номер вашей карты), нажать на кнопку "Отправить". Тем самым, автоматически сформируется заявление на возврат. \
-                        Сумма возврата зависит от условий Перевозчика, а также от времени, которое осталось до поездки. Чем раньше Вы оформили возврат, тем большую сумму вернете. Билет можно вернуть только до отправления автобуса, после отправления автобуса билет возврату не подлежит. Подробнее<a href="https://biletavto.ru/faq#f7" target="_blank">тут</a>'
+                        Сумма возврата зависит от условий Перевозчика, а также от времени, которое осталось до поездки. Чем раньше Вы оформили возврат, тем большую сумму вернете. Билет можно вернуть только до отправления автобуса, после отправления автобуса билет возврату не подлежит. Подробнее <a href="https://biletavto.ru/faq#f7" target="_blank">в разделе "Вопросы и Ответы"</a>'
                     },
                     {
                         id: 8,
@@ -147,32 +143,31 @@
                 }]
             },
             methods: {
-                sendMessage: function () {
+                sendMessage: function() {
                     for (var key in this.variations) {
-                        if(this.variations[key].id == this.clientMessage) {
+                        if (this.variations[key].id == this.clientMessage) {
                             var saveKey = key;
                         }
                     }
-                    if(saveKey) {
+                    if (saveKey) {
                         this.messages.push({
                             client: this.clientMessage,
                             chat: this.variations[saveKey].answer
                         })
-                    }
-                    else {
+                    } else {
                         this.messages.push({
                             client: this.clientMessage,
-                            chat: 'syntax error'
+                            chat: 'Введите корректную команду'
                         })
                     }
                     this.clientMessage = ''
+                    scroll()
                 },
-                update: _.debounce(function (e) {
+                update: _.debounce(function(e) {
                     this.clientMessage = e.target.value
-                    }, 300)
+                }, 300)
             }
         })
-
     </script>
 </body>
 
