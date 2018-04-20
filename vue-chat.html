@@ -4,34 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Чат БилетАвто</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/assets/bilet/css/chat.css" rel="stylesheet">
+    <link href="chat.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
 </head>
 
 <body>
-    <link href="chat.css" rel="stylesheet">
-
-    <div class="BA_chat" style="left: 970px; top: 20px; position: fixed;">
+    <div class="chat-bar" id="chat-bar">
+        <div class="bar-wrapper" style="display:block">
+            <div class="bar-outerPanel">
+                <div class="bar-outerPanel-text">напишите нам</div>
+                <div class="bar-outerPanel-ico">
+                    <i class="fa fa-comment" style="transform: scale(1); opacity: 1;"></i>
+                </div>
+            </div>
+            <div class="bar-innerPanel">
+                <div class="bar-innerPanel-webChat" onclick="chatShow()"></div>
+                <div class="bar-innerPanel-webChat-tooltip ocWidget-text">Написать в чат на сайте</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="BA_chat" id="BA_chat" style="top: 69px; position: fixed;" hidden="hidden">
         <div id="BA_chat_brain">
             <div class="BA_chat_top-wrapper">
-                <!-- FRAME TOP -->
                 <div class="BA_chat_top">
                     <div class="BA_chat_top-allHeading BA-heading">БилетАвто</div>
-                    <div class="BA_chat_top-msgHeading BA-description">веб-чат с компанией</div>
-                    <div class="BA_chat_top-icoX" data-onclick="BA.chat.hide()"></div>
+                    <div class="BA_chat_top-icoX" onclick="closeChat()"></div>
                 </div>
             </div>
             <div class="BA_chat_mid-wrapper">
-                <!-- FRAME MIDDLE -->
                 <div class="BA_chat_mid">
-                    <!-- ИНТЕРФЕЙС ЧАТА -->
                     <div class="BA_chat_mid_msg" id="block">
                         <div class="BA_message-received ocAnimation-fadeIn BA-message-group">
-                            <!-- ИНТЕРФЕЙС ВХОДЯЩЕГО СООБЩЕНИЯ -->
                             <div class="BA_chat_mid_msg_receivedMessage">
                                 <div class="BA_chat_mid_msg_receivedMessage_message">
                                     <div class="BA_chat_mid_msg_receivedMessage_message-text BA-text">
-                                        Я — бот БилетАвто. Спасибо, что написали!<br> Пожалуйста, выберите команду по интересующей Вас теме:<br> 1 – Вас интересует расписание?<br> 2 – Стоимость проезда<br> 3 – Телефон автостанции<br> 4 – Хотите забронировать билет<br> 5 – Покупка билета<br> 6 – Что делать, если по выбранному билету нет данных о расписании<br> 7 – Возврат билета<br> 8 - Замена билета<br> 9 – Проблемы технического характера, прочие вопросы</div>
+                                        Я — бот БилетАвто. Спасибо, что написали!<br> Пожалуйста, выберите команду по интересующей Вас теме:<br> 1 – Вас интересует расписание?<br> 2 – Стоимость проезда<br> 3 – Телефон автостанции<br> 4 – Хотите забронировать билет<br> 5 – Покупка билета<br> 6 – Что делать, если по выбранному билету нет данных о расписании<br> 7 – Возврат билета<br> 8 – Замена билета<br> 9 – Проблемы технического характера, прочие вопросы</div>
                                 </div>
                             </div>
                         </div>
@@ -40,22 +49,31 @@
                 </div>
             </div>
             <div class="BA_chat_bot-wrapper">
-                <!-- Форма ввода сообщения -->
                 <div class="BA_chat_bot">
                     <input type="number" min="1" max="10" placeholder="Введите номер команды" class="BA_chat_bot_msg-textarea" style="height: 33px;" v-model="clientMessage" v-on:keyup.enter="sendMessage">
                     <div class="BA_btnBg BA_chat_bot_msg-send" v-on:click="sendMessage">Отправить</div>
                 </div>
-                <!-- Конец формы ввода -->
             </div>
         </div>
     </div>
     
-    <script>
-        function scroll() { 
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>        
+        function scrollMessage() { 
             setTimeout(function() {
                 var block = document.getElementById("block");
                 block.scrollTop = block.scrollHeight + 9999;
-            }, 1000);
+            }, 500);
+        }
+        
+        function chatShow() {
+            $('#chat-bar').hide(1000);
+            $('#BA_chat').delay(600).show(1000);
+        }
+        
+        function closeChat() {
+            $('#BA_chat').hide(1000);
+            $('#chat-bar').delay(400).show(1000);
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -67,7 +85,6 @@
             template: '\
                 <div>\
                     <div class="BA_message-sent ocAnimation-fadeIn">\
-                        <!-- ИНТЕРФЕЙС ИСХОДЯЩЕГО СООБЩЕНИЯ -->\
                         <div class="BA_chat_mid_msg_sentMessage">\
                             <div class="BA_chat_mid_msg_sentMessage_message">\
                                 <div class="BA_chat_mid_msg_sentMessage_message-text BA-text">{{ clientmessage }}</div>\
@@ -75,7 +92,6 @@
                         </div>\
                     </div>\
                     <div class="BA_message-received ocAnimation-fadeIn BA-message-group">\
-                        <!-- ИНТЕРФЕЙС ВХОДЯЩЕГО СООБЩЕНИЯ -->\
                         <div class="BA_chat_mid_msg_receivedMessage">\
                             <div class="BA_chat_mid_msg_receivedMessage_message">\
                                 <div class="BA_chat_mid_msg_receivedMessage_message-text BA-text" v-html="chatmessage">{{ chatmessage }}</div>\
@@ -117,7 +133,7 @@
                     },
                     {
                         id: 5,
-                        answer: 'Подробная инструкции покупки билета доступна по ссылке https://biletavto.ru/faq#f0'
+                        answer: 'Подробная инструкции покупки билета доступна по ссылке <a href="https://biletavto.ru/faq#f0" target="_blank">в разделе "Вопросы и Ответы"</a>'
                     },
                     {
                         id: 6,
@@ -144,24 +160,26 @@
             },
             methods: {
                 sendMessage: function() {
-                    for (var key in this.variations) {
-                        if (this.variations[key].id == this.clientMessage) {
-                            var saveKey = key;
+                    if(this.clientMessage != '') {
+                        for (var key in this.variations) {
+                            if (this.variations[key].id == this.clientMessage) {
+                                var saveKey = key;
+                            }
                         }
+                        if (saveKey) {
+                            this.messages.push({
+                                client: this.clientMessage,
+                                chat: this.variations[saveKey].answer
+                            })
+                        } else {
+                            this.messages.push({
+                                client: this.clientMessage,
+                                chat: 'Введите корректную команду'
+                            })
+                        }
+                        this.clientMessage = ''
+                        scrollMessage()
                     }
-                    if (saveKey) {
-                        this.messages.push({
-                            client: this.clientMessage,
-                            chat: this.variations[saveKey].answer
-                        })
-                    } else {
-                        this.messages.push({
-                            client: this.clientMessage,
-                            chat: 'Введите корректную команду'
-                        })
-                    }
-                    this.clientMessage = ''
-                    scroll()
                 },
                 update: _.debounce(function(e) {
                     this.clientMessage = e.target.value
