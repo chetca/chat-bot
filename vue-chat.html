@@ -58,7 +58,13 @@
     </div>
     
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script>        
+    <script> 
+        jQuery(document).ready(function() {
+            if ($(window).width() <= '768') {
+                $('#chat-bar').hide();
+            }
+        });
+        
         function scrollMessage() { 
             setTimeout(function() {
                 var block = document.getElementById("block");
@@ -76,9 +82,14 @@
             $('#chat-bar').delay(400).show(1000);
         }
     </script>
+<!--
+    
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://unpkg.com/marked@0.3.6"></script>
     <script src="https://unpkg.com/lodash@4.16.0"></script>
+    
+-->
+    <script src="vue.js"></script>
     <script>
         Vue.component('message-item', {
             props: ['clientmessage', 'chatmessage', 'compiledMarkdown'],
@@ -180,10 +191,7 @@
                         this.clientMessage = ''
                         scrollMessage()
                     }
-                },
-                update: _.debounce(function(e) {
-                    this.clientMessage = e.target.value
-                }, 300)
+                }
             }
         })
     </script>
